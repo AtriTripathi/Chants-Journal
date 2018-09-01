@@ -1,12 +1,22 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/primaryTextColor</item>
         <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="MantraDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">#000000</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="dialogCornerRadius">8dp</item>
+        <item name="dialogTheme">@color/secondaryDarkColor</item>
     </style>
 
 </resources>
