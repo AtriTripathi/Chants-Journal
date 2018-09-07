@@ -31,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         mMantraList.add("Aum Namah Shivaya");
         mMantraList.add("Aum Namah Shivaya");
         mMantraList.add("Aum Namah Shivaya");
+        mMantraList.add("Aum Namah Shivaya");
+        mMantraList.add("Aum Namah Shivaya");
+        mMantraList.add("Aum Namah Shivaya");
+        mMantraList.add("Aum Namah Shivaya");
+        mMantraList.add("Aum Namah Shivaya");
+        mMantraList.add("Aum Namah Shivaya");
 
         linearLayoutManager = new LinearLayoutManager(this);
         mantraAdapter = new MantraAdapter(mMantraList);

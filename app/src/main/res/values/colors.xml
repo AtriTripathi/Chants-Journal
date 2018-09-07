@@ -11,4 +11,5 @@
     <color name="alternate_orange">#FF8F00</color>
     <color name="primaryDarkColor2">#003d33</color>
     <color name="dark_orange">#F9A825</color>
+    <color name="colorAccent">#000000</color>
 </resources>

@@ -16,7 +16,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mantra_details);
 
         final EditText mantraEditText = findViewById(R.id.et_enter_mantra);
-        Button saveButton = findViewById(R.id.save_button);
+        Button saveButton = findViewById(R.id.save_mantra_button);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
