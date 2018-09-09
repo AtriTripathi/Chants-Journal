@@ -1,6 +1,5 @@
 package com.atritripathi.chantsjournal;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,10 +23,9 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 if (mantraEditText.getText().toString().trim().equals("")) {
                     mantraEditText.setError("Mantra is required!");
                 } else {
-
-                    Intent intent = new Intent();
-                    intent.putExtra("mantra_name",mantraEditText.getText().toString().trim());
-                    setResult(Activity.RESULT_OK,intent);
+                    Intent intent = new Intent(MantraDetailsActivity.this, MainActivity.class);
+                    intent.putExtra(Intent.EXTRA_RETURN_RESULT, mantraEditText.getText().toString().trim());
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             }

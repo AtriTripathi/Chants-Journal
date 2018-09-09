@@ -1,63 +1,61 @@
 package com.atritripathi.chantsjournal;
 
-import android.app.Activity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private final static String LOG_TAG = "MainActivity";
     private static final int MANTRA_DETAILS_ACTIVITY_REQUEST_CODE = 0;
 
-    private RecyclerView mRecyclerView;
-    private ArrayList<String> mMantraList;
-    private MantraAdapter mantraAdapter;
-    private LinearLayoutManager linearLayoutManager;
+    private MantraViewModel mMantraViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMantraList = new ArrayList<>();
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
-        mMantraList.add("Aum Namah Shivaya");
+        final MantraAdapter mMantraAdapter = new MantraAdapter(this);
 
-        linearLayoutManager = new LinearLayoutManager(this);
-        mantraAdapter = new MantraAdapter(mMantraList);
-
-        mRecyclerView = findViewById(R.id.rv_mantras);
-        mRecyclerView.setHasFixedSize(false);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.setAdapter(mantraAdapter);
+        RecyclerView mRecyclerView = findViewById(R.id.rv_mantras);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mMantraAdapter);
 
 
-        Button addMantraButton = findViewById(R.id.add_mantra_button);
+        // Get a new or existing ViewModel from the ViewModelProvider.
+        mMantraViewModel = ViewModelProviders.of(this).get(MantraViewModel.class);
+
+
+        // Add an observer on the LiveData. The onChanged() method fires when the observed data
+        // changes and the activity is in the foreground.
+        mMantraViewModel.getAllWords().observe(this, new Observer<List<Mantra>>() {
+            @Override
+            public void onChanged(@Nullable List<Mantra> mantras) {
+                mMantraAdapter.setMantras(mantras);
+            }
+        });
+
+
+        final Button addMantraButton = findViewById(R.id.add_mantra_button);
         addMantraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MantraDetailsActivity.class);
                 startActivityForResult(intent, MANTRA_DETAILS_ACTIVITY_REQUEST_CODE);
-                Log.v(LOG_TAG, "onClick completed successfully");
             }
         });
-
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -65,10 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case (MANTRA_DETAILS_ACTIVITY_REQUEST_CODE): {
-                if(resultCode == Activity.RESULT_OK) {
-                    String mantraName = data.getStringExtra("mantra_name");
-                    mMantraList.add(mantraName);
-                    mantraAdapter.notifyDataSetChanged();
+                if (resultCode == RESULT_OK) {
+                    Mantra mantra = new Mantra(data.getStringExtra(Intent.EXTRA_RETURN_RESULT));
+                    mMantraViewModel.insert(mantra);
+                } else {
+                    Toast.makeText(this, "Mantra not saved", Toast.LENGTH_SHORT).show();
                 }
             }
         }

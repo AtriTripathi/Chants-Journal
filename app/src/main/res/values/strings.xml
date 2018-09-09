@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Chants Journal</string>
-
-    <style name="new_mantra">Enter new mantra</style>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_mantra">Add Mantra</string>
+    <string name="enter_mantra">Enter the mantra</string>
+    <string name="no_mantras">No Mantras</string>
+    <string name="select_mantra">Select Your Mantra</string>
+    <string name="save_mantra">Save Mantra</string>
+    <string name="mantra">Mantra</string>
+    <string name="new_mantra">New Mantra</string>
 </resources>
