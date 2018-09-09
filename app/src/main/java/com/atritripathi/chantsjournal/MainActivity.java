@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         addMantraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MantraDetailsActivity.class);
+                Intent intent = new Intent(MainActivity.this, NewMantraActivity.class);
                 startActivityForResult(intent, MANTRA_DETAILS_ACTIVITY_REQUEST_CODE);
             }
         });

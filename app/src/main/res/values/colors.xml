@@ -12,4 +12,6 @@
     <color name="primaryDarkColor2">#003d33</color>
     <color name="dark_orange">#F9A825</color>
     <color name="colorAccent">#000000</color>
+    <color name="et_black">#0f0f0f</color>
+    <color name="aplha_orange">#C8F57F17</color>
 </resources>
