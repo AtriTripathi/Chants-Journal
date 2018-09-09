@@ -22,7 +22,7 @@
     <!--Floating label text style-->
     <style name="HintText" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColor">@color/et_black</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="MantraEditText" parent="Theme.AppCompat.Light">
