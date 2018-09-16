@@ -35,7 +35,7 @@ public class MantraRepository {
 
         @Override
         protected Void doInBackground(final Mantra... params) {
-            mAsyncTaskDao.insert(params[0]);
+            mAsyncTaskDao.insertMantra(params[0]);
             return null;
         }
     }

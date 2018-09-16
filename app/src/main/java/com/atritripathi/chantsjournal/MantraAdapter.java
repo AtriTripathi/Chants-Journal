@@ -58,7 +58,7 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
     @Override
     public void onBindViewHolder(@NonNull MantraViewHolder holder, int position) {
         if (mMantras != null) {
-            holder.mantraItemView.setText(mMantras.get(position).getMantra());
+            holder.mantraItemView.setText(mMantras.get(position).getMantraName());
         } else {
             holder.mantraItemView.setText(R.string.no_mantras);
         }

@@ -14,7 +14,7 @@ public interface MantraDao {
     LiveData<List<Mantra>> getAllMantras();
 
     @Insert
-    void insert(Mantra mantra);
+    void insertMantra(Mantra mantra);
 
     @Query("DELETE FROM mantra_table")
     void deleteAllMantras();

@@ -12,7 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MANTRA_DETAILS_ACTIVITY_REQUEST_CODE = 0;
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         final MantraAdapter mMantraAdapter = new MantraAdapter(this);
 
@@ -51,10 +57,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, NewMantraActivity.class);
-                startActivityForResult(intent, MANTRA_DETAILS_ACTIVITY_REQUEST_CODE);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, MANTRA_DETAILS_ACTIVITY_REQUEST_CODE);
+                }
             }
         });
     }
+
+//    LocalDate date = LocalDate.now();
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+//    String text = date.format(formatter);
+//    LocalDate parsedDate = LocalDate.parse(text, formatter);
 
 
     @Override
@@ -64,7 +77,30 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode) {
             case (MANTRA_DETAILS_ACTIVITY_REQUEST_CODE): {
                 if (resultCode == RESULT_OK) {
-                    Mantra mantra = new Mantra(data.getStringExtra(Intent.EXTRA_RETURN_RESULT));
+                    //Toast.makeText(this, data.getStringExtra("mantra_name"), Toast.LENGTH_SHORT).show();
+//                    String startDateString = data.getStringExtra("start_date");
+//                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+//                    try {
+//                        Date startDate = df.parse(startDateString);  // Conversion from String
+//                        String newDateString = df.format(startDate);
+//                        Calendar cal = GregorianCalendar.getInstance();
+//                        cal.setTime(startDate);
+//                        cal.add(GregorianCalendar.MONTH,5);
+//                        Toast.makeText(this, df.format(cal.getTime()), Toast.LENGTH_SHORT).show();
+//
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+
+//                    Toast.makeText(this, data.getStringExtra("start_date"), Toast.LENGTH_SHORT).show();
+
+                    String mantraName = data.getStringExtra("mantra_name");
+                    String malasCount = data.getStringExtra("malas_count");
+                    String startDate = data.getStringExtra("start_date");
+                    String endDate = data.getStringExtra("end_date");
+                    String notes = data.getStringExtra("notes");
+
+                    Mantra mantra = new Mantra(mantraName, malasCount, startDate, endDate, notes);
                     mMantraViewModel.insert(mantra);
                 } else {
                     Toast.makeText(this, "Mantra not saved", Toast.LENGTH_SHORT).show();
@@ -72,4 +108,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    Date dateObjectConverter(String dateString) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Date dateObject = null;
+        try {
+            dateObject = dateFormat.parse(dateString);  // Conversion from String
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateObject;
+    }
+
 }

@@ -8,4 +8,5 @@
     <string name="mantra">Mantra</string>
     <string name="new_mantra">New Mantra</string>
     <string name="set_goal">Set Your Goal</string>
+    <string name="total_malas">Total Number of Malas</string>
 </resources>

@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {Mantra.class}, version = 1, exportSchema = false)
+@Database(entities = {Mantra.class}, version = 3, exportSchema = false)
 public abstract class MantraDatabase extends RoomDatabase {
 
     public abstract MantraDao mantraDao();
