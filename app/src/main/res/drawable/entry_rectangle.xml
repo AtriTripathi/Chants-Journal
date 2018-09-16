@@ -10,6 +10,6 @@
     <solid android:color="@color/alternate_orange" />
 
     <corners
-        android:radius="2dp"/>
+        android:radius="4dp"/>
 
 </shape>

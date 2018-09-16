@@ -18,7 +18,7 @@ public class MantraViewModel extends AndroidViewModel {
         mAllMantras = mMantraRepository.getAllMantras();
     }
 
-    LiveData<List<Mantra>> getAllWords() {
+    LiveData<List<Mantra>> getAllMantras() {
         return mAllMantras;
     }
 

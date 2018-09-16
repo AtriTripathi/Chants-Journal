@@ -1,6 +1,7 @@
 package com.atritripathi.chantsjournal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,9 +30,17 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
     public static class MantraViewHolder extends RecyclerView.ViewHolder {
         private final TextView mantraItemView;
 
-        private MantraViewHolder(View itemView) {
+        private MantraViewHolder(final View itemView) {
             super(itemView);
             mantraItemView = itemView.findViewById(R.id.tv_mantra);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), MantraDetailsActivity.class);
+                    intent.putExtra("mantra_position", getAdapterPosition() + 1);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
     }
 
@@ -44,8 +53,8 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
      */
     @NonNull
     @Override
-    public MantraViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int position) {
-        View itemView = mInflater.inflate(R.layout.layout_mantra, viewGroup, false);
+    public MantraViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int position) {
+        final View itemView = mInflater.inflate(R.layout.layout_mantra, viewGroup, false);
         return new MantraViewHolder(itemView);
     }
 

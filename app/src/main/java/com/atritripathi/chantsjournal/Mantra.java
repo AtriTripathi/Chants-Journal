@@ -8,17 +8,20 @@ import android.arch.persistence.room.PrimaryKey;
 public class Mantra {
 
     // Constructor
-    public Mantra(String mantraName, String malasCount, String startDate, String endDate, String notes) {
+    public Mantra(String mantraName, String malasCount, String startDate, String endDate, String notes, String totalDays, String chantsPerDay) {
         this.mantraName = mantraName;
         this.malasCount = malasCount;
         this.startDate = startDate;
         this.endDate = endDate;
         this.notes = notes;
+        this.totalDays = totalDays;
+        this.chantsPerDay = chantsPerDay;
     }
 
 
     // Columns in the table
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
     @ColumnInfo(name = "mantra_name")
@@ -35,6 +38,12 @@ public class Mantra {
 
     @ColumnInfo(name = "notes")
     private String notes;
+
+    @ColumnInfo(name = "total_days")
+    private String totalDays;
+
+    @ColumnInfo(name = "chants_per_day")
+    private String chantsPerDay;
 
 
     // Getters & Setters
@@ -84,6 +93,22 @@ public class Mantra {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getTotalDays() {
+        return totalDays;
+    }
+
+    public void setTotalDays(String totalDays) {
+        this.totalDays = totalDays;
+    }
+
+    public String getChantsPerDay() {
+        return chantsPerDay;
+    }
+
+    public void setChantsPerDay(String chantsPerDay) {
+        this.chantsPerDay = chantsPerDay;
     }
 
 }

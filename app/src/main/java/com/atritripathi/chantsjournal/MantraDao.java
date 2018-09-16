@@ -13,6 +13,9 @@ public interface MantraDao {
     @Query("SELECT * FROM mantra_table")
     LiveData<List<Mantra>> getAllMantras();
 
+    @Query("SELECT * FROM mantra_table WHERE id == :position")
+    Mantra getMantra(int position);
+
     @Insert
     void insertMantra(Mantra mantra);
 

@@ -3,7 +3,7 @@
     <color name="primaryColor">#00695c</color>
     <color name="primaryLightColor">#439889</color>
     <color name="primaryDarkColor">#FF8F00</color>
-    <color name="secondaryColor">#2e7d32</color>
+    <color name="secondaryColor">#aa2e7d32</color>
     <color name="secondaryLightColor">#60ad5e</color>
     <color name="secondaryDarkColor">#005005</color>
     <color name="primaryTextColor">#ffffff</color>
@@ -14,4 +14,5 @@
     <color name="colorAccent">#000000</color>
     <color name="et_black">#0f0f0f</color>
     <color name="aplha_orange">#C8F57F17</color>
+    <color name="alpha_red">#b4d32f2f</color>
 </resources>

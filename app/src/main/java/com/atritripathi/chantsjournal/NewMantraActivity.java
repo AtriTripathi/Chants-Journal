@@ -45,6 +45,8 @@ public class NewMantraActivity extends AppCompatActivity {
         final TextInputEditText startDateEditText = findViewById(R.id.et_start_date);
         final TextInputEditText endDateEditText = findViewById(R.id.et_end_date);
         final TextInputEditText notesEditText = findViewById(R.id.et_notes);
+        final TextView totalDays = findViewById(R.id.tv_total_days);
+        final TextView chantsPerDay = findViewById(R.id.tv_chants_per_day);
         final Button saveButton = findViewById(R.id.save_mantra_button);
 
         startDatePlaceHolder = startDateEditText;
@@ -70,6 +72,8 @@ public class NewMantraActivity extends AppCompatActivity {
                     intent.putExtra("start_date", startDateEditText.getEditableText().toString().trim());
                     intent.putExtra("end_date", endDateEditText.getEditableText().toString().trim());
                     intent.putExtra("notes", notesEditText.getEditableText().toString().trim());
+                    intent.putExtra("total_days", totalDays.getText().toString().trim());
+                    intent.putExtra("chants_per_day", chantsPerDay.getText().toString().trim());
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -114,7 +118,6 @@ public class NewMantraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 endFlag = true;
-
                 setDate(endDateEditText);
             }
         });
