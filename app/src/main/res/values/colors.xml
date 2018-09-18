@@ -14,5 +14,6 @@
     <color name="colorAccent">#000000</color>
     <color name="et_black">#0f0f0f</color>
     <color name="aplha_orange">#C8F57F17</color>
+    <color name="button_orange">#c8ef6c00</color>
     <color name="alpha_red">#b4d32f2f</color>
 </resources>

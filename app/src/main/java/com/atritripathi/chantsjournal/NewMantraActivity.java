@@ -32,6 +32,8 @@ public class NewMantraActivity extends AppCompatActivity {
     private TextInputEditText startDatePlaceHolder;
     private TextInputEditText endDatePlaceHolder;
     private TextInputEditText malasPlaceHolder;
+    private int malasPerDayPlaceHolder;
+    private int totalDaysPlaceHolder;
 
     private final Calendar mCalendar = Calendar.getInstance();
 
@@ -72,8 +74,8 @@ public class NewMantraActivity extends AppCompatActivity {
                     intent.putExtra("start_date", startDateEditText.getEditableText().toString().trim());
                     intent.putExtra("end_date", endDateEditText.getEditableText().toString().trim());
                     intent.putExtra("notes", notesEditText.getEditableText().toString().trim());
-                    intent.putExtra("total_days", totalDays.getText().toString().trim());
-                    intent.putExtra("chants_per_day", chantsPerDay.getText().toString().trim());
+                    intent.putExtra("total_days", totalDaysPlaceHolder);
+                    intent.putExtra("chants_per_day", malasPerDayPlaceHolder);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
@@ -137,13 +139,16 @@ public class NewMantraActivity extends AppCompatActivity {
         if (!endDate.equals("") && !startDate.equals("") && !malasCount.equals("")) {
 
             double daysCount = getDaysDiff(startDatePlaceHolder, endDatePlaceHolder);
-            String daysDiff = (int) daysCount + " Days";
+            totalDaysPlaceHolder = (int) daysCount;
+            String daysDiff = totalDaysPlaceHolder + " Days";
 
             TextView totalDays = findViewById(R.id.tv_total_days);
             totalDays.setText(daysDiff);
 
             double malas = Integer.parseInt(malasCount);
-            String malasPerDay = (int) Math.ceil(malas / daysCount) + " Malas";
+            malasPerDayPlaceHolder = (int) Math.ceil(malas / daysCount);
+            String malasPerDay = malasPerDayPlaceHolder + " Malas";
+
 
             TextView chantsPerDay = findViewById(R.id.tv_chants_per_day);
             chantsPerDay.setText(malasPerDay);

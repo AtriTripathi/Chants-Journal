@@ -83,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
                     String startDate = data.getStringExtra("start_date");
                     String endDate = data.getStringExtra("end_date");
                     String notes = data.getStringExtra("notes");
-                    String totalDays = data.getStringExtra("total_days");
-                    String chantsPerDay = data.getStringExtra("chants_per_day");
+                    int totalDays = data.getIntExtra("total_days", 1);
+                    int chantsPerDay = data.getIntExtra("chants_per_day", 1);
 
                     Mantra mantra = new Mantra(mantraName, malasCount, startDate, endDate, notes, totalDays, chantsPerDay);
                     mMantraViewModel.insert(mantra);
