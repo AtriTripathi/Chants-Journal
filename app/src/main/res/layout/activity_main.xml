@@ -16,8 +16,8 @@
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
         android:text="@string/app_name"
-        android:textColor="@android:color/black"
         android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:textSize="58sp"
         app:fontFamily="@font/samkaran"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/button_rounded"
         android:paddingBottom="10dp"
         android:paddingLeft="40dp"
@@ -99,7 +99,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_mantras" />
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView2"
@@ -136,5 +137,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_chainStyle="packed" />
+
+    <View
+        android:id="@+id/init_buddha_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_mantras"
+        app:layout_constraintEnd_toEndOf="@+id/rv_mantras"
+        app:layout_constraintStart_toStartOf="@+id/rv_mantras"
+        app:layout_constraintTop_toTopOf="@+id/rv_mantras">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/om_imageView"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/buddha_transparent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="It's a bit lonely hear..."
+                android:textColor="@color/trans_black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Get started by adding a mantra" />
+        </LinearLayout>
+    </View>
+
 
 </android.support.constraint.ConstraintLayout>

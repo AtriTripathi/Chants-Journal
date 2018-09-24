@@ -29,12 +29,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        View initBuddhaView = findViewById(R.id.init_buddha_view);
 
         final MantraAdapter mMantraAdapter = new MantraAdapter(this);
+
 
         RecyclerView mRecyclerView = findViewById(R.id.rv_mantras);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mMantraAdapter.registerAdapterDataObserver(new MantraListEmptyObserver(mRecyclerView,initBuddhaView));
         mRecyclerView.setAdapter(mMantraAdapter);
 
 
@@ -62,12 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
 
-//    LocalDate date = LocalDate.now();
-//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
-//    String text = date.format(formatter);
-//    LocalDate parsedDate = LocalDate.parse(text, formatter);
+    }
 
 
     @Override
