@@ -12,12 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private static final int MANTRA_DETAILS_ACTIVITY_REQUEST_CODE = 0;
@@ -92,17 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    Date dateObjectConverter(String dateString) {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        Date dateObject = null;
-        try {
-            dateObject = dateFormat.parse(dateString);  // Conversion from String
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return dateObject;
     }
 
 }
