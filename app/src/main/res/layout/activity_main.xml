@@ -122,6 +122,21 @@
         app:layout_constraintTop_toBottomOf="@+id/divider3"
         app:layout_constraintVertical_bias="0.0" />
 
+
+    <ImageView
+        android:id="@+id/buddha_always_bg"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:tint="@color/aplha_orange"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/add_mantra_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/buddha_transparent" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_mantras"
         android:layout_width="0dp"
@@ -155,12 +170,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rv_mantras"
-        app:layout_constraintVertical_bias="0.7">
+        app:layout_constraintVertical_bias="0.6">
 
         <ImageView
             android:id="@+id/om_imageView"
-            android:layout_width="260dp"
-            android:layout_height="260dp"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
@@ -185,6 +200,7 @@
             android:gravity="center_horizontal"
             android:text="Get started by adding a mantra"
             android:textSize="18sp" />
+
     </LinearLayout>
 
 

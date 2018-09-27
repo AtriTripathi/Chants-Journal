@@ -10,7 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         View initBuddhaView = findViewById(R.id.init_buddha_view);
+        ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
 
         final MantraAdapter mMantraAdapter = new MantraAdapter(this);
 
@@ -32,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView mRecyclerView = findViewById(R.id.rv_mantras);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mMantraAdapter.registerAdapterDataObserver(new MantraListEmptyObserver(mRecyclerView,initBuddhaView));
+
+        // Checks whether list is empty and then displays the initial buddha image
+        mMantraAdapter.registerAdapterDataObserver(new MantraListEmptyObserver(mRecyclerView,initBuddhaView,buddhaTranslucent));
+
         mRecyclerView.setAdapter(mMantraAdapter);
 
 
@@ -82,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Mantra mantra = new Mantra(mantraName, malasCount, startDate, endDate, notes, totalDays, chantsPerDay);
                     mMantraViewModel.insert(mantra);
-                } else {
-                    Toast.makeText(this, "Mantra not saved", Toast.LENGTH_SHORT).show();
                 }
             }
         }

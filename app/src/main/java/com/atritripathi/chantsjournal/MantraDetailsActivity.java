@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
@@ -20,7 +19,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
 
     private int malasCompleted = 0;
     private int chantsPerDayPlaceHolder;
-    private static MediaPlayer mp;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final Button deleteButton = findViewById(R.id.button_delete);
 
         final int position = getIntent().getIntExtra("mantra_position", 1);
-        Toast.makeText(MantraDetailsActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
 
 
         new Thread(new Runnable() {
@@ -68,7 +66,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
                 mp.start();
 
-                vibrator.vibrate(50);
+                vibrator.vibrate(20);
                 if (malasCompleted < chantsPerDayPlaceHolder) {
                     malasCompleted++;
                     count.setText(malasCompleted + " of " + chantsPerDayPlaceHolder + " Malas Completed");
@@ -84,6 +82,13 @@ public class MantraDetailsActivity extends AppCompatActivity {
                     mp = MediaPlayer.create(getBaseContext(),R.raw.done_chanting_dialog_tune);
                     mp.start();
 
+                    DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
+                        @Override
+                        public void onPositive(Dialog dialog) {
+                            finish();
+                        }
+                    };
+
                     DroidDialog.onNegativeListener negativeListener = new DroidDialog.onNegativeListener() {
                         @Override
                         public void onNegative(Dialog dialog) {
@@ -96,13 +101,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
                             .title(getString(R.string.done_for_day_title))
                             .content(getString(R.string.done_for_day_content))
                             .cancelable(true, true)
-                            .positiveButton("I'm Done For Today", new DroidDialog.onPositiveListener() {
-                                @Override
-                                public void onPositive(Dialog droidDialog) {
-                                    Toast.makeText(MantraDetailsActivity.this, "YES", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            })
+                            .positiveButton("I'm Done For Today", positiveListener)
                             .negativeButton("Continue Chanting", negativeListener)
                             .animation(AnimUtils.AnimUp)
                             .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
@@ -110,7 +109,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
                                     ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
                             .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
                             .show();
-
                 }
             }
         });
@@ -144,7 +142,5 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 mp.release();
             }
         });
-
     }
-
 }
