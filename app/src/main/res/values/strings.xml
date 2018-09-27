@@ -9,4 +9,6 @@
     <string name="new_mantra">New Mantra</string>
     <string name="set_goal">Set Your Goal</string>
     <string name="total_malas">Total Number of Malas</string>
+    <string name="done_for_day_title">Congratulations!</string>
+    <string name="done_for_day_content">You have successfully completed your daily chanting goal. Do you wish to continue chanting or are you done for the day? </string>
 </resources>

@@ -41,7 +41,9 @@ dependencies {
     implementation 'com.android.support:design:28.0.0-rc02'
 
     // For push button animations
-    implementation( 'com.github.thekhaeng:pushdown-anim-click:1.1.1' ){
+    implementation('com.github.thekhaeng:pushdown-anim-click:1.1.1') {
         exclude group: 'com.android.support'
     }
+
+    implementation 'com.github.droidbyme:DroidDialog:c6decc7167'
 }

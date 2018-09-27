@@ -1,15 +1,19 @@
 package com.atritripathi.chantsjournal;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.droidbyme.dialoglib.AnimUtils;
+import com.droidbyme.dialoglib.DroidDialog;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 public class MantraDetailsActivity extends AppCompatActivity {
@@ -55,20 +59,59 @@ public class MantraDetailsActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (mp.isPlaying()) {
+                if (mp.isPlaying() && mp != null) {
                     mp.stop();
                     mp.reset();
                     mp.release();
-                    mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ting);
+                    mp = null;
                 }
+                mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
                 mp.start();
 
                 vibrator.vibrate(50);
                 if (malasCompleted < chantsPerDayPlaceHolder) {
                     malasCompleted++;
+                    count.setText(malasCompleted + " of " + chantsPerDayPlaceHolder + " Malas Completed");
                 }
-                count.setText(malasCompleted + " of "+ chantsPerDayPlaceHolder + " Malas Completed");
+
+                if (malasCompleted == chantsPerDayPlaceHolder) {
+                    if (mp.isPlaying() && mp != null) {
+                        mp.stop();
+                        mp.reset();
+                        mp.release();
+                        mp = null;
+                    }
+                    mp = MediaPlayer.create(getBaseContext(),R.raw.done_chanting_dialog_tune);
+                    mp.start();
+
+                    DroidDialog.onNegativeListener negativeListener = new DroidDialog.onNegativeListener() {
+                        @Override
+                        public void onNegative(Dialog dialog) {
+                            dialog.dismiss();
+                        }
+                    };
+
+                    new DroidDialog.Builder(MantraDetailsActivity.this)
+                            .icon(R.drawable.ic_action_tick)
+                            .title(getString(R.string.done_for_day_title))
+                            .content(getString(R.string.done_for_day_content))
+                            .cancelable(true, true)
+                            .positiveButton("I'm Done For Today", new DroidDialog.onPositiveListener() {
+                                @Override
+                                public void onPositive(Dialog droidDialog) {
+                                    Toast.makeText(MantraDetailsActivity.this, "YES", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            })
+                            .negativeButton("Continue Chanting", negativeListener)
+                            .animation(AnimUtils.AnimUp)
+                            .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
+                                    ContextCompat.getColor(MantraDetailsActivity.this, R.color.secondaryColor),
+                                    ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
+                            .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
+                            .show();
+
+                }
             }
         });
 
@@ -76,20 +119,20 @@ public class MantraDetailsActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (mp.isPlaying()) {
+                if (mp.isPlaying() && mp != null) {
                     mp.stop();
                     mp.reset();
                     mp.release();
-                    mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ting);
+                    mp = null;
                 }
+                mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
                 mp.start();
 
-                vibrator.vibrate(50);
+                vibrator.vibrate(20);
                 if (malasCompleted > 0) {
                     malasCompleted--;
+                    count.setText(malasCompleted + " of " + chantsPerDayPlaceHolder + " Malas Completed");
                 }
-                count.setText(malasCompleted + " of "+ chantsPerDayPlaceHolder + " Malas Completed");
             }
         });
 
@@ -103,4 +146,5 @@ public class MantraDetailsActivity extends AppCompatActivity {
         });
 
     }
+
 }

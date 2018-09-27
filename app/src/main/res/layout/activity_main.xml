@@ -159,8 +159,8 @@
 
         <ImageView
             android:id="@+id/om_imageView"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
@@ -174,7 +174,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="It's a bit lonely hear..."
+            android:text="It's a bit lonely here..."
             android:textColor="@color/trans_black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -184,7 +184,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="Get started by adding a mantra"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
     </LinearLayout>
 
 
