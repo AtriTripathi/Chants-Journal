@@ -47,11 +47,11 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 totalDays.setText(mantra.getTotalDays() + " Days");
                 chantsPerDay.setText(mantra.getChantsPerDay() + " Malas");
                 chantsPerDayPlaceHolder = mantra.getChantsPerDay();
-                count.setText(malasCompleted + " of "+ chantsPerDayPlaceHolder + " Malas Completed");
+                count.setText(malasCompleted + " of " + chantsPerDayPlaceHolder + " Malas Completed");
             }
         }).start();
 
-        PushDownAnim.setPushDownAnimTo( addButton, deleteButton);
+        PushDownAnim.setPushDownAnimTo(addButton, deleteButton);
 
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
                         mp.release();
                         mp = null;
                     }
-                    mp = MediaPlayer.create(getBaseContext(),R.raw.done_chanting_dialog_tune);
+                    mp = MediaPlayer.create(getBaseContext(), R.raw.done_chanting_dialog_tune);
                     mp.start();
 
                     DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
@@ -117,19 +117,21 @@ public class MantraDetailsActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mp.isPlaying() && mp != null) {
-                    mp.stop();
-                    mp.reset();
-                    mp.release();
-                    mp = null;
-                }
-                mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
-                mp.start();
-
-                vibrator.vibrate(20);
                 if (malasCompleted > 0) {
-                    malasCompleted--;
-                    count.setText(malasCompleted + " of " + chantsPerDayPlaceHolder + " Malas Completed");
+                    if (mp.isPlaying() && mp != null) {
+                        mp.stop();
+                        mp.reset();
+                        mp.release();
+                        mp = null;
+                    }
+                    mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
+                    mp.start();
+
+                    vibrator.vibrate(20);
+                    if (malasCompleted > 0) {
+                        malasCompleted--;
+                        count.setText(malasCompleted + " of " + chantsPerDayPlaceHolder + " Malas Completed");
+                    }
                 }
             }
         });
