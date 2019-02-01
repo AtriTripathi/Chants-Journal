@@ -4,9 +4,9 @@
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimaryDark">@color/status_bg</item>
         <item name="colorAccent">@color/primaryTextColor</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">false</item>
     </style>
 
     <style name="MantraDialogTheme" parent="Theme.AppCompat.Light.Dialog">

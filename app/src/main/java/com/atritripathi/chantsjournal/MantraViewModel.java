@@ -25,4 +25,8 @@ public class MantraViewModel extends AndroidViewModel {
     public void insert(Mantra mantra) {
         mMantraRepository.insert(mantra);
     }
+
+    public void deleteMantra(Mantra mantra) {
+        mMantraRepository.deleteMantra(mantra);
+    }
 }

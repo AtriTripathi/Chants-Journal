@@ -17,4 +17,5 @@
     <color name="button_orange">#c8ef6c00</color>
     <color name="alpha_red">#b4d32f2f</color>
     <color name="trans_black">#212121</color>
+    <color name="status_bg">#ff791a</color>
 </resources>

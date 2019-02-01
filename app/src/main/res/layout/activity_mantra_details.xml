@@ -20,7 +20,7 @@
         android:text="Mantra Details"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="52sp"
+        android:textSize="60sp"
         app:fontFamily="@font/samkaran"
         app:layout_constraintBottom_toTopOf="@+id/tv_mantra_name"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="8dp"
         android:paddingStart="16dp"
-        android:text="Total number of Days:"
+        android:text="Total Number Of Malas:"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/et_black"
@@ -108,7 +108,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="8dp"
         android:paddingStart="16dp"
-        android:text="Chants Required Per Day:"
+        android:text="Number of Malas Completed:"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/et_black"
@@ -135,7 +135,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/save_mantra_button"
+        android:id="@+id/done_chanting_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -148,7 +148,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:paddingTop="10dp"
-        android:text="Start Chanting"
+        android:text="Done Chanting"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,7 +157,7 @@
 
 
     <TextView
-        android:id="@+id/tv_details_total_days"
+        android:id="@+id/tv_details_total_malas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -166,6 +166,7 @@
         android:layout_marginStart="8dp"
         android:text="N/A"
         android:textAlignment="textStart"
+        android:gravity="start"
         android:textColor="@color/et_black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -174,7 +175,7 @@
         app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/tv_details_chants_per_day"
+        android:id="@+id/tv_details_completed_malas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -199,12 +200,12 @@
 
     <Button
         android:id="@+id/button_add"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button_add_mala"
@@ -213,37 +214,13 @@
         android:padding="8dp"
         android:text="+"
         android:textAlignment="center"
-        android:textSize="72sp"
-        app:layout_constraintBottom_toTopOf="@+id/save_mantra_button"
+        android:textSize="84sp"
+        app:layout_constraintBottom_toTopOf="@+id/done_chanting_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button_delete"
-        app:layout_constraintTop_toBottomOf="@+id/divider5"
-        app:layout_constraintVertical_bias="0.75" />
-
-
-    <Button
-        android:id="@+id/button_delete"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_delete_mala"
-        android:clickable="true"
-        android:elevation="8dp"
-        android:padding="8dp"
-        android:text="-"
-        android:textAlignment="center"
-        android:textSize="72sp"
-        app:layout_constraintBottom_toTopOf="@+id/save_mantra_button"
-        app:layout_constraintEnd_toStartOf="@+id/button_add"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider5"
         app:layout_constraintVertical_bias="0.75" />
+
 
     <TextView
         android:id="@+id/tv_count"
@@ -260,7 +237,7 @@
         android:textColor="@color/et_black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_delete"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

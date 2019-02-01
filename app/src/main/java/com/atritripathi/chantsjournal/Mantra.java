@@ -8,14 +8,9 @@ import android.arch.persistence.room.PrimaryKey;
 public class Mantra {
 
     // Constructor
-    public Mantra(String mantraName, String malasCount, String startDate, String endDate, String notes, int totalDays, int chantsPerDay) {
+    public Mantra(String mantraName, int totalMalas) {
         this.mantraName = mantraName;
-        this.malasCount = malasCount;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.notes = notes;
-        this.totalDays = totalDays;
-        this.chantsPerDay = chantsPerDay;
+        this.totalMalas = totalMalas;
     }
 
 
@@ -27,23 +22,11 @@ public class Mantra {
     @ColumnInfo(name = "mantra_name")
     private String mantraName;
 
-    @ColumnInfo(name = "malas_count")
-    private String malasCount;
+    @ColumnInfo(name = "total_malas")
+    private int totalMalas;
 
-    @ColumnInfo(name = "start_date")
-    private String startDate;
-
-    @ColumnInfo(name = "end_date")
-    private String endDate;
-
-    @ColumnInfo(name = "notes")
-    private String notes;
-
-    @ColumnInfo(name = "total_days")
-    private int totalDays;
-
-    @ColumnInfo(name = "chants_per_day")
-    private int chantsPerDay;
+    @ColumnInfo(name = "completed_malas")
+    private int completedMalas;
 
 
     // Getters & Setters
@@ -63,52 +46,20 @@ public class Mantra {
         this.mantraName = mantra;
     }
 
-    public String getMalasCount() {
-        return malasCount;
+    public int getTotalMalas() {
+        return totalMalas;
     }
 
-    public void setMalasCount(String malasCount) {
-        this.malasCount = malasCount;
+    public void setTotalMalas(int totalMalas) {
+        this.totalMalas = totalMalas;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public int getCompletedMalas() {
+        return completedMalas;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public int getTotalDays() {
-        return totalDays;
-    }
-
-    public void setTotalDays(int totalDays) {
-        this.totalDays = totalDays;
-    }
-
-    public int getChantsPerDay() {
-        return chantsPerDay;
-    }
-
-    public void setChantsPerDay(int chantsPerDay) {
-        this.chantsPerDay = chantsPerDay;
+    public void setCompletedMalas(int completedMalas) {
+        this.completedMalas = completedMalas;
     }
 
 }

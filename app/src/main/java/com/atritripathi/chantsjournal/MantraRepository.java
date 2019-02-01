@@ -39,4 +39,23 @@ public class MantraRepository {
             return null;
         }
     }
+
+    public void deleteMantra(Mantra mantra)  {
+        new deleteMantraAsyncTask(mMantraDao).execute(mantra);
+    }
+
+    private static class deleteMantraAsyncTask extends AsyncTask<Mantra, Void, Void> {
+
+        private MantraDao mAsyncTaskDao;
+
+        deleteMantraAsyncTask(MantraDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Mantra... params) {
+            mAsyncTaskDao.deleteMantra(params[0]);
+            return null;
+        }
+    }
 }

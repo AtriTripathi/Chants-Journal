@@ -23,6 +23,10 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
         mInflater = LayoutInflater.from(context);
     }
 
+    public Mantra getMantraAtPosition (int position) {
+        return mMantras.get(position);
+    }
+
 
     /**
      * Takes care of caching the already created views along with their component's resource ids.
@@ -33,14 +37,25 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
         private MantraViewHolder(final View itemView) {
             super(itemView);
             mantraItemView = itemView.findViewById(R.id.tv_mantra);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), MantraDetailsActivity.class);
-                    intent.putExtra("mantra_position", getAdapterPosition() + 1);
+                    intent.putExtra("mantra_position", getAdapterPosition());
                     itemView.getContext().startActivity(intent);
                 }
             });
+
+//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//                @Override
+//                public boolean onLongClick(View v) {
+//                    Intent intent = new Intent("delete_mantra");
+//                    intent.putExtra("mantra_position",getAdapterPosition());
+//                    LocalBroadcastManager.getInstance(itemView.getContext()).sendBroadcast(intent);
+//                    return true;
+//                }
+//            });
         }
     }
 
@@ -73,7 +88,6 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
         }
     }
 
-
     /**
      * To assign the mantras to the mantra list
      * @param mantras is the list of mantras
@@ -85,7 +99,7 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
 
 
     /**
-     * To handle the no of views to create on the screen.
+     * To handle the no of mantra views to create on the screen.
      * @return List size is returned back to the recycler view.
      */
     @Override
@@ -94,6 +108,11 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
             return mMantras.size();
         else
             return 0;
+    }
+
+    void refreshMantraList(int position) {
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position,getItemCount());
     }
 }
 
