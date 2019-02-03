@@ -39,8 +39,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
 
-//        final Button deleteButton = findViewById(R.id.button_delete);
-
         final int position = getIntent().getIntExtra("mantra_position", 1);
         Log.d(TAG, "onCreate: position = " + position);
 
@@ -57,7 +55,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
             }
         }).start();
 
-//        PushDownAnim.setPushDownAnimTo(addButton, deleteButton);
         PushDownAnim.setPushDownAnimTo(addButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {

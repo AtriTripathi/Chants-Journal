@@ -22,7 +22,6 @@ public class MantraListEmptyObserver extends RecyclerView.AdapterDataObserver {
         checkIfEmpty();
     }
 
-
     /**
      * Check if Layout is empty and show the appropriate view
      */

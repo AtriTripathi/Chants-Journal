@@ -23,15 +23,10 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
         mInflater = LayoutInflater.from(context);
     }
 
-    public Mantra getMantraAtPosition (int position) {
-        return mMantras.get(position);
-    }
-
-
     /**
      * Takes care of caching the already created views along with their component's resource ids.
      */
-    public static class MantraViewHolder extends RecyclerView.ViewHolder {
+    public static class MantraViewHolder extends RecyclerView.ViewHolder{
         private final TextView mantraItemView;
 
         private MantraViewHolder(final View itemView) {
@@ -41,12 +36,15 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), MantraDetailsActivity.class);
-                    intent.putExtra("mantra_position", getAdapterPosition());
-                    itemView.getContext().startActivity(intent);
+                    if (getAdapterPosition() != RecyclerView.NO_POSITION) {
+                        Intent intent = new Intent(itemView.getContext(), MantraDetailsActivity.class);
+                        intent.putExtra("mantra_position", getAdapterPosition() + 1);
+                        itemView.getContext().startActivity(intent);
+                    }
                 }
             });
 
+//             ********** Experiental feature: To delete mantras **********
 //            itemView.setOnLongClickListener(new View.OnLongClickListener() {
 //                @Override
 //                public boolean onLongClick(View v) {
@@ -59,7 +57,6 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
         }
     }
 
-
     /**
      * Takes care of creating and inflating ViewHolders.
      * @param viewGroup Defines the parent view for which the viewHolder is created, to get the context.
@@ -68,7 +65,7 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
      */
     @NonNull
     @Override
-    public MantraViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int position) {
+    public MantraViewHolder onCreateViewHolder(@NonNull final ViewGroup viewGroup, int position) {
         final View itemView = mInflater.inflate(R.layout.layout_mantra, viewGroup, false);
         return new MantraViewHolder(itemView);
     }
@@ -80,9 +77,17 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
      * @param position The position in the data source from from which the data is to be retrieved.
      */
     @Override
-    public void onBindViewHolder(@NonNull MantraViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MantraViewHolder holder, int position) {
         if (mMantras != null) {
             holder.mantraItemView.setText(mMantras.get(position).getMantraName());
+//            holder.mantraItemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(holder.mantraItemView.getContext(), MantraDetailsActivity.class);
+//                    intent.putExtra("mantra_position", holder.getAdapterPosition() + 1);
+//                    holder.mantraItemView.getContext().startActivity(intent);
+//                }
+//            });
         } else {
             holder.mantraItemView.setText(R.string.no_mantras);
         }
@@ -110,9 +115,11 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
             return 0;
     }
 
-    void refreshMantraList(int position) {
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position,getItemCount());
-    }
+//    void refreshMantraList(int position) {
+//        notifyItemRemoved(position);
+//        notifyItemRangeChanged(position,getItemCount());
+//        notifyDataSetChanged();
+//    }
+
 }
 
