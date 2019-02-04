@@ -23,6 +23,12 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
         mInflater = LayoutInflater.from(context);
     }
 
+
+    public Mantra getMantraAtPosition (int position) {
+        return mMantras.get(position);
+    }
+
+
     /**
      * Takes care of caching the already created views along with their component's resource ids.
      */
@@ -46,16 +52,6 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
                 }
             });
 
-//             ********** Experiental feature: To delete mantras **********
-//            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    Intent intent = new Intent("delete_mantra");
-//                    intent.putExtra("mantra_position",getAdapterPosition());
-//                    LocalBroadcastManager.getInstance(itemView.getContext()).sendBroadcast(intent);
-//                    return true;
-//                }
-//            });
         }
 
         public void bind(Mantra mantraReference) {
@@ -120,11 +116,9 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
             return 0;
     }
 
-//    void refreshMantraList(int position) {
-//        notifyItemRemoved(position);
-//        notifyItemRangeChanged(position,getItemCount());
-//        notifyDataSetChanged();
-//    }
-
+    void refreshMantraList(int position) {
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position,getItemCount());
+    }
 }
 

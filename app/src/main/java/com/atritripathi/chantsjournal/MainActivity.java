@@ -1,17 +1,23 @@
 package com.atritripathi.chantsjournal;
 
+import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.droidbyme.dialoglib.AnimUtils;
+import com.droidbyme.dialoglib.DroidDialog;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,6 +76,71 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Add the functionality to swipe items in the
+        // recycler view to delete that item
+        ItemTouchHelper helper = new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0,
+                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView,
+                                          RecyclerView.ViewHolder viewHolder,
+                                          RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder,
+                                         int direction) {
+                        int position = viewHolder.getAdapterPosition();
+                        deleteMantraAlertDialog(position);
+                    }
+                });
+
+        helper.attachToRecyclerView(mRecyclerView);
+
+    }
+
+    private void deleteMantraAlertDialog(final int position) {
+
+        DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
+            @Override
+            public void onPositive(Dialog dialog) {
+                dialog.dismiss();
+            }
+        };
+
+        DroidDialog.onNegativeListener negativeListener = new DroidDialog.onNegativeListener() {
+            @Override
+            public void onNegative(Dialog dialog) {
+
+                Mantra mantra = mMantraAdapter.getMantraAtPosition(position);
+                mMantraViewModel.deleteMantra(mantra);
+
+                Toast.makeText(MainActivity.this,"Mantra deleted" ,Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        };
+
+        // This if condition is used to prevent app crashes when a dialog is being shown
+        // while the activity is closing.
+        if(!MainActivity.this.isFinishing()) {
+            new DroidDialog.Builder(MainActivity.this)
+                    .icon(R.drawable.ic_action_close)
+                    .title("Confirm deletion.")
+                    .content("Are you sure? This will permanently delete this mantra and all its associated data.")
+                    .cancelable(true, true)
+                    .positiveButton("Cancel", positiveListener)
+                    .negativeButton("Delete", negativeListener)
+                    .animation(AnimUtils.AnimDown)
+                    .color(ContextCompat.getColor(MainActivity.this, R.color.alternate_orange),
+                            ContextCompat.getColor(MainActivity.this, R.color.secondaryColor),
+                            ContextCompat.getColor(MainActivity.this, R.color.alpha_red))
+                    .divider(true, ContextCompat.getColor(MainActivity.this, R.color.orange))
+                    .show();
+            mMantraAdapter.refreshMantraList(position);
+        }
     }
 
     public void createSignInIntent() {
