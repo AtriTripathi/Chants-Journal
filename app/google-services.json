@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "46031210730",
+    "firebase_url": "https://chantsjournal.firebaseio.com",
+    "project_id": "chantsjournal",
+    "storage_bucket": "chantsjournal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:46031210730:android:35ebbb45f91fa1d8",
+        "android_client_info": {
+          "package_name": "com.atritripathi.chantsjournal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "46031210730-5vushlb4q0478thvdbotik5qpekppdb4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.atritripathi.chantsjournal",
+            "certificate_hash": "5cca7d36c57d11ef76cbcbbac0ad85793ab1d768"
+          }
+        },
+        {
+          "client_id": "46031210730-2d30h7mfcvfd8rvjigup56ckt4rej72n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpH30xq5fk4Sh8XQWLVO4hCr91Y8VE-D4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "46031210730-2d30h7mfcvfd8rvjigup56ckt4rej72n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

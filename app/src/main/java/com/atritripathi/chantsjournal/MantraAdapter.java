@@ -28,6 +28,7 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
      */
     public static class MantraViewHolder extends RecyclerView.ViewHolder{
         private final TextView mantraItemView;
+        private Mantra mantra;
 
         private MantraViewHolder(final View itemView) {
             super(itemView);
@@ -38,7 +39,8 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
                 public void onClick(View v) {
                     if (getAdapterPosition() != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(itemView.getContext(), MantraDetailsActivity.class);
-                        intent.putExtra("mantra_position", getAdapterPosition() + 1);
+//                        intent.putExtra("mantra_position", getAdapterPosition() + 1);
+                        intent.putExtra("mantra_name",mantra.getMantraName());
                         itemView.getContext().startActivity(intent);
                     }
                 }
@@ -54,6 +56,16 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
 //                    return true;
 //                }
 //            });
+        }
+
+        public void bind(Mantra mantraReference) {
+            //here we are, keeping a reference to the passed Mantra object.
+            this.mantra = mantraReference;
+            if (mantra.getMantraName() != null) {
+                mantraItemView.setText(mantra.getMantraName());
+            } else {
+                mantraItemView.setText(R.string.no_mantras);
+            }
         }
     }
 
@@ -78,19 +90,12 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
      */
     @Override
     public void onBindViewHolder(@NonNull final MantraViewHolder holder, int position) {
-        if (mMantras != null) {
-            holder.mantraItemView.setText(mMantras.get(position).getMantraName());
-//            holder.mantraItemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Intent intent = new Intent(holder.mantraItemView.getContext(), MantraDetailsActivity.class);
-//                    intent.putExtra("mantra_position", holder.getAdapterPosition() + 1);
-//                    holder.mantraItemView.getContext().startActivity(intent);
-//                }
-//            });
-        } else {
-            holder.mantraItemView.setText(R.string.no_mantras);
-        }
+//        if (mMantras != null) {
+//            holder.mantraItemView.setText(mMantras.get(position).getMantraName());
+//        } else {
+//            holder.mantraItemView.setText(R.string.no_mantras);
+//        }
+        holder.bind(mMantras.get(position));
     }
 
     /**

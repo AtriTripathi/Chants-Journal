@@ -39,13 +39,16 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
 
-        final int position = getIntent().getIntExtra("mantra_position", 1);
-        Log.d(TAG, "onCreate: position = " + position);
+//        final int position = getIntent().getIntExtra("mantra_position", 1);
+//        Log.d(TAG, "onCreate: position = " + position);
+
+        final String mantraIdentifier = getIntent().getStringExtra("mantra_name");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(position);
+//                Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(position+1);
+                Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(mantraIdentifier);
                 Log.d(TAG, "Value of mantra = " + mantra);
                 mantraName.setText(mantra.getMantraName());
                 totalMalas.setText(mantra.getTotalMalas() + " Malas");
@@ -107,7 +110,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
                             public void run() {
                                 MantraDatabase.getDatabase(MantraDetailsActivity.this)
                                         .mantraDao()
-                                        .updateMalas(position,totalMalasCompleted + malasCompleted);
+                                        .updateMalas(mantraIdentifier,totalMalasCompleted + malasCompleted);
                             }
                         }).start();
 
