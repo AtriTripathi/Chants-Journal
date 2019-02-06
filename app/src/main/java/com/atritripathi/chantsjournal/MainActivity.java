@@ -40,9 +40,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // To show the translucent Buddha in the background, appropriately.
         View initBuddhaView = findViewById(R.id.init_buddha_view);
         ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
+
+
+        ImageView settingsIcon = findViewById(R.id.iv_settings);
+        settingsIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         RecyclerView mRecyclerView = findViewById(R.id.rv_mantras);
         mRecyclerView.setHasFixedSize(true);
@@ -187,15 +199,18 @@ public class MainActivity extends AppCompatActivity {
                     // Successfully signed in
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     // ...
-                } else {
-                    // Sign in failed. If response is null the user canceled the
-                    // sign-in flow using the back button. Otherwise check
-                    // response.getError().getErrorCode() and handle the error.
-                    // ...
-                    if (response != null) {
-                        response.getError().getErrorCode();
-                    }
+                } else if (resultCode == RESULT_CANCELED){
+                    Toast.makeText(this,"Signin failed",Toast.LENGTH_SHORT).show();
 
+//                    // Sign in failed. If response is null the user canceled the
+//                    // sign-in flow using the back button. Otherwise check
+//                    // response.getError().getErrorCode() and handle the error.
+//                    // ...
+//                    if (response != null) {
+//                        response.getError().getErrorCode();
+//                    }
+                } else {
+                    Toast.makeText(this,"Unknown Response",Toast.LENGTH_SHORT).show();
                 }
             }
         }

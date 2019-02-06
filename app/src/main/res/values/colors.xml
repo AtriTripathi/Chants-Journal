@@ -18,4 +18,6 @@
     <color name="alpha_red">#b4d32f2f</color>
     <color name="trans_black">#212121</color>
     <color name="status_bg">#ff791a</color>
+    <color name="trans_white">#55ffffff</color>
+    <color name="melon">#f79862</color>
 </resources>

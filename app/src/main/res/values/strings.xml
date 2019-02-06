@@ -13,4 +13,5 @@
     <string name="done_for_day_content">Do you wish to continue chanting or are you done for the day? </string>
     <string name="delete_mantra_title">Confirm deletion.></string>
     <string name="delete_mantra_content">You are about to permanently delete this Mantra and all its data. Do you wish to continue?></string>
+    <string name="title_activity_settings">Settings</string>
 </resources>

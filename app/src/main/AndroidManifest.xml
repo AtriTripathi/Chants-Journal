@@ -29,6 +29,7 @@
             android:name=".MantraDetailsActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
