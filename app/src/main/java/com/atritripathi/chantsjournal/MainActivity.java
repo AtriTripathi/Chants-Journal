@@ -18,18 +18,12 @@ import android.widget.Toast;
 
 import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int MANTRA_DETAILS_ACTIVITY_REQUEST_CODE = 0;
-    private static final int RC_SIGN_IN = 123;
 
     private MantraViewModel mMantraViewModel;
     private MantraAdapter mMantraAdapter;
@@ -39,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        if (user == null) {
+//            signOut();
+//        }
 
 
         // To show the translucent Buddha in the background, appropriately.
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         settingsIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SettingsActivity.class);
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -113,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void signOut() {
+        Intent signOutIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(signOutIntent);
+        finish();
+    }
+
     private void deleteMantraAlertDialog(final int position) {
 
         DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 Mantra mantra = mMantraAdapter.getMantraAtPosition(position);
                 mMantraViewModel.deleteMantra(mantra);
 
-                Toast.makeText(MainActivity.this,"Mantra deleted" ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Mantra deleted", Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
             }
@@ -137,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         // This if condition is used to prevent app crashes when a dialog is being shown
         // while the activity is closing.
-        if(!MainActivity.this.isFinishing()) {
+        if (!MainActivity.this.isFinishing()) {
             new DroidDialog.Builder(MainActivity.this)
                     .icon(R.drawable.ic_action_close)
                     .title("Confirm deletion.")
@@ -155,22 +160,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void createSignInIntent() {
-        // [START auth_fui_create_intent]
-        // Choose authentication providers
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.PhoneBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build());
-
-        // Create and launch sign-in intent
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .build(),
-                RC_SIGN_IN);
-        // [END auth_fui_create_intent]
-    }
+//    public void createSignInIntent() {
+//        // [START auth_fui_create_intent]
+//        // Choose authentication providers
+//        List<AuthUI.IdpConfig> providers = Arrays.asList(
+//                new AuthUI.IdpConfig.PhoneBuilder().build(),
+//                new AuthUI.IdpConfig.GoogleBuilder().build());
+//
+//        // Create and launch sign-in intent
+//        startActivityForResult(
+//                AuthUI.getInstance()
+//                        .createSignInIntentBuilder()
+//                        .setAvailableProviders(providers)
+//                        .build(),
+//                RC_SIGN_IN);
+//        // [END auth_fui_create_intent]
+//    }
 
 
     /**
@@ -191,26 +196,6 @@ public class MainActivity extends AppCompatActivity {
                     int totalMalas = data.getIntExtra("total_malas", 0);
                     Mantra mantra = new Mantra(mantraName, totalMalas);
                     mMantraViewModel.insert(mantra);
-                }
-            }
-            case (RC_SIGN_IN): {
-                IdpResponse response = IdpResponse.fromResultIntent(data);
-                if (resultCode == RESULT_OK) {
-                    // Successfully signed in
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    // ...
-                } else if (resultCode == RESULT_CANCELED){
-                    Toast.makeText(this,"Signin failed",Toast.LENGTH_SHORT).show();
-
-//                    // Sign in failed. If response is null the user canceled the
-//                    // sign-in flow using the back button. Otherwise check
-//                    // response.getError().getErrorCode() and handle the error.
-//                    // ...
-//                    if (response != null) {
-//                        response.getError().getErrorCode();
-//                    }
-                } else {
-                    Toast.makeText(this,"Unknown Response",Toast.LENGTH_SHORT).show();
                 }
             }
         }
