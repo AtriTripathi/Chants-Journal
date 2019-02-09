@@ -52,6 +52,14 @@ public class SettingsActivity extends AppCompatActivity {
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
                                     .setAvailableProviders(providers)
+                                    .setTheme(R.style.AuthTheme)
+                                    .setLogo(R.drawable.buddha_transparent)
+                                    .setTosAndPrivacyPolicyUrls(
+                                            "https://github.com/AtriTripathi/Privacy-Policies-" +
+                                                    "Terms-and-Conditions/blob/master/Chants%20Journal" +
+                                                    "/Terms%20%26%20Conditions",
+                                            "https://github.com/AtriTripathi/Privacy-Policies-" +
+                                                    "Terms-and-Conditions/blob/master/Chants%20Journal/Privacy%20Policy")
                                     .build(),
                             RC_SIGN_IN
                     );

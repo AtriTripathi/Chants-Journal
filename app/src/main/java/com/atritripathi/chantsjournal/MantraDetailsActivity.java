@@ -45,6 +45,8 @@ public class MantraDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mantra_details);
+
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (auth.getCurrentUser() == null) {
@@ -56,7 +58,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
 //            loginUser();
 //        }
 
-        setContentView(R.layout.activity_mantra_details);
 
         final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mp = MediaPlayer.create(this, R.raw.malas_counter_ting);
@@ -67,9 +68,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final TextView count = findViewById(R.id.tv_count);
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
-
-//        final int position = getIntent().getIntExtra("mantra_position", 1);
-//        Log.d(TAG, "onCreate: position = " + position);
 
         final String mantraIdentifier = getIntent().getStringExtra("mantra_name");
 
@@ -250,6 +248,14 @@ public class MantraDetailsActivity extends AppCompatActivity {
                         AuthUI.getInstance()
                                 .createSignInIntentBuilder()
                                 .setAvailableProviders(providers)
+                                .setTheme(R.style.AuthTheme)
+                                .setLogo(R.drawable.buddha_transparent)
+                                .setTosAndPrivacyPolicyUrls(
+                                        "https://github.com/AtriTripathi/Privacy-Policies-" +
+                                                "Terms-and-Conditions/blob/master/Chants%20Journal" +
+                                                "/Terms%20%26%20Conditions",
+                                        "https://github.com/AtriTripathi/Privacy-Policies-" +
+                                                "Terms-and-Conditions/blob/master/Chants%20Journal/Privacy%20Policy")
                                 .build(),
                         RC_SIGN_IN
                 );
