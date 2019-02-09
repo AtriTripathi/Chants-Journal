@@ -13,7 +13,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/status_bg</item>
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/trans_black</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:background">@color/alternate_orange</item>
         <!--<item name="android:padding">2dp</item>-->

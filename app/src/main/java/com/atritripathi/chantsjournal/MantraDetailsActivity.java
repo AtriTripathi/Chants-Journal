@@ -90,20 +90,15 @@ public class MantraDetailsActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
                 if (mp.isPlaying() && mp != null) {
                     mp.stop();
                     mp.reset();
                     mp.release();
-                    mp = null;
+                    mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
                 }
-                mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
+
                 mp.start();
-
-                vibrator.vibrate(20);
-
-                malasCompleted++;
-                count.setText(malasCompleted + " Malas Completed");
-
                 mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
@@ -111,6 +106,18 @@ public class MantraDetailsActivity extends AppCompatActivity {
                         mp.release();
                     }
                 });
+
+//                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+//                    @Override
+//                    public void onCompletion(MediaPlayer mp) {
+//                        mp.release();
+//                    }
+//                });
+
+                vibrator.vibrate(20);
+
+                malasCompleted++;
+                count.setText(malasCompleted + " Malas Completed");
             }
         });
 
@@ -118,14 +125,22 @@ public class MantraDetailsActivity extends AppCompatActivity {
         doneChanting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mp = MediaPlayer.create(MantraDetailsActivity.this, R.raw.done_chanting_dialog_tune);
                 if (mp.isPlaying() && mp != null) {
                     mp.stop();
                     mp.reset();
                     mp.release();
-                    mp = null;
+                    mp = MediaPlayer.create(MantraDetailsActivity.this, R.raw.done_chanting_dialog_tune);
                 }
-                mp = MediaPlayer.create(getBaseContext(), R.raw.done_chanting_dialog_tune);
+
                 mp.start();
+                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        mp.reset();
+                        mp.release();
+                    }
+                });
 
                 DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
                     @Override
@@ -139,14 +154,6 @@ public class MantraDetailsActivity extends AppCompatActivity {
                                         .updateMalas(mantraIdentifier, totalMalasCompleted + malasCompleted);
                             }
                         }).start();
-
-                        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mp) {
-                                mp.reset();
-                                mp.release();
-                            }
-                        });
 
                         dialog.dismiss();
                         finish();
@@ -190,10 +197,10 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 // Successfully signed in
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String name = user.getDisplayName();
-                Toast.makeText(this,name,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
                 // ...
-            } else if (resultCode == RESULT_CANCELED){
-                Toast.makeText(this,"Signin failed",Toast.LENGTH_SHORT).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Signin failed", Toast.LENGTH_SHORT).show();
 
 //                    // Sign in failed. If response is null the user canceled the
 //                    // sign-in flow using the back button. Otherwise check
@@ -203,7 +210,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
 //                    response.getError().getErrorCode();
 //                }
             } else {
-                Toast.makeText(this,"Unknown Response",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Unknown Response", Toast.LENGTH_SHORT).show();
             }
         }
     }

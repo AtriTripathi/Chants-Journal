@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -146,13 +147,18 @@ public class SettingsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
+            IdpResponse response = IdpResponse.fromResultIntent(data);
+
             if (resultCode == RESULT_OK) {
                 updateProfileData();
-                displayMessage("Signed In");
+                displayMessage("Signed in");
             } else if (resultCode == RESULT_CANCELED) {
-                displayMessage("Sign In canceled");
+                if (response != null) {
+                    response.getError().getErrorCode();
+                }
+                displayMessage("Sign in canceled");
             } else {
-                displayMessage("Failed to Sign In");
+                displayMessage("Unknown Response");
             }
         }
     }
