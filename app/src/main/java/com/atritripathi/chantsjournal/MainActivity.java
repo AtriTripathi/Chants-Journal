@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -45,12 +48,20 @@ public class MainActivity extends AppCompatActivity {
         ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
 
 
-        ImageView settingsIcon = findViewById(R.id.iv_settings);
-        settingsIcon.setOnClickListener(new View.OnClickListener() {
+        ImageView settingsButton = findViewById(R.id.iv_settings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ImageView helpButton = findViewById(R.id.iv_help);
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showHelpDialog();
             }
         });
 
@@ -111,6 +122,16 @@ public class MainActivity extends AppCompatActivity {
         helper.attachToRecyclerView(mRecyclerView);
 
     }
+
+
+    private void showHelpDialog() {
+        Dialog helpDialog = new Dialog(MainActivity.this);
+        helpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        helpDialog.setContentView(R.layout.layout_help_button);
+        helpDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        helpDialog.show();
+    }
+
 
     private void signOut() {
         Intent signOutIntent = new Intent(MainActivity.this, SettingsActivity.class);
