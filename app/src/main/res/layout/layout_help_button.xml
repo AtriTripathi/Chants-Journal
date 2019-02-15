@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_margin="16dp"
     android:background="@drawable/help_dialog">
 
     <TextView
@@ -15,10 +16,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/melon"
-        android:text=" Hello hdiuh d hidehw hsuhc shchjshhs hshd \n haudhuw \n hudhuhd \n hiuhdui\n whduih\ndiu huhdueghded \n ygyudgew\n uydgwuy \n gyud\nhewudhwuhd"
+        android:padding="8dp"
+        android:background="@drawable/help_dialog"
+        android:text="@string/help_text"
         android:textColor="@android:color/black"
         android:textSize="18sp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

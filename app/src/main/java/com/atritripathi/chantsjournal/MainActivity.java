@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showHelpDialog() {
-        Dialog helpDialog = new Dialog(MainActivity.this);
+        Dialog helpDialog = new Dialog(MainActivity.this,R.style.PauseDialog);
         helpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         helpDialog.setContentView(R.layout.layout_help_button);
         helpDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
