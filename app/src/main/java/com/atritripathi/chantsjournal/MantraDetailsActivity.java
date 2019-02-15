@@ -40,27 +40,14 @@ public class MantraDetailsActivity extends AppCompatActivity {
 
     private int malasCompleted = 0;
     private int totalMalasCompleted;
+    private int totalMalasInt;
+    private int completedMalasInt;
     private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mantra_details);
-
-        auth = FirebaseAuth.getInstance();
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        if (auth.getCurrentUser() == null) {
-            promptLogin();
-        }
-
-//        auth = FirebaseAuth.getInstance();
-//        if (isUserLogin()) {
-//            loginUser();
-//        }
-
-
-        final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        mp = MediaPlayer.create(this, R.raw.malas_counter_ting);
 
         final TextView mantraName = findViewById(R.id.tv_mantra_name);
         final TextView totalMalas = findViewById(R.id.tv_details_total_malas);
@@ -69,7 +56,17 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
 
+        auth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (auth.getCurrentUser() == null) {
+            promptLogin();
+        }
+
         final String mantraIdentifier = getIntent().getStringExtra("mantra_name");
+
+        final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        mp = MediaPlayer.create(this, R.raw.malas_counter_ting);
+
 
         new Thread(new Runnable() {
             @Override
@@ -78,18 +75,37 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(mantraIdentifier);
                 Log.d(TAG, "Value of mantra = " + mantra);
                 mantraName.setText(mantra.getMantraName());
-                totalMalas.setText(mantra.getTotalMalas() + " Malas");
-                completedMalas.setText(mantra.getCompletedMalas() + " Malas");
+                totalMalasInt = mantra.getTotalMalas();
+                completedMalasInt = mantra.getCompletedMalas();
+                totalMalas.setText(totalMalasInt + " Malas");
+                completedMalas.setText(completedMalasInt + " Malas");
+//                totalMalasInt = Integer.valueOf(totalMalas.getText().toString());
+//                completedMalasInt = Integer.valueOf(completedMalas.getText().toString());
                 totalMalasCompleted = mantra.getCompletedMalas();
                 count.setText(malasCompleted + " Malas Completed");
+
+
+//                if (completedMalasInt == totalMalasInt) {
+//                    finish();
+//                    Toast.makeText(MantraDetailsActivity.this,"Goal",Toast.LENGTH_SHORT).show();
+//                    runOnUiThread();
+//                }
             }
         }).start();
+
 
         PushDownAnim.setPushDownAnimTo(addButton);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int finalCount = malasCompleted + completedMalasInt;
+                Log.d(TAG, "checkChantingGoalReached: fc and tm are " + finalCount + " " + totalMalasInt);
+                if (finalCount == totalMalasInt) {
+                    checkChantingGoalReached(completedMalasInt, totalMalasInt, mantraIdentifier);
+                }
+
                 mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
                 if (mp.isPlaying() && mp != null) {
                     mp.stop();
@@ -118,6 +134,10 @@ public class MantraDetailsActivity extends AppCompatActivity {
 
                 malasCompleted++;
                 count.setText(malasCompleted + " Malas Completed");
+
+
+                checkChantingGoalReached(completedMalasInt, totalMalasInt, mantraIdentifier);
+
             }
         });
 
@@ -184,6 +204,49 @@ public class MantraDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+
+    void checkChantingGoalReached(int completedMalasInt, int totalMalasInt, final String mantraIdentifier) {
+        int finalCount = malasCompleted + completedMalasInt;
+
+        Log.d(TAG, "checkChantingGoalReached: fc and tm are " + finalCount + " " + totalMalasInt);
+        if (finalCount == totalMalasInt) {
+
+            DroidDialog.onNeutralListener neutralListener = new DroidDialog.onNeutralListener() {
+                @Override
+                public void onNeutral(Dialog dialog) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            MantraDatabase.getDatabase(MantraDetailsActivity.this)
+                                    .mantraDao()
+                                    .updateMalas(mantraIdentifier, totalMalasCompleted + malasCompleted);
+                        }
+                    }).start();
+
+                    dialog.dismiss();
+                    finish();
+                }
+            };
+
+            if (!MantraDetailsActivity.this.isFinishing()) {
+                new DroidDialog.Builder(MantraDetailsActivity.this)
+                        .icon(R.drawable.ic_action_tick)
+                        .title("Congratulations!")
+                        .content("You have successfully completed your chanting goal. " +
+                                "Please delete this mantra from the list, or you can continue to chant as long as you wish.")
+                        .cancelable(false, false)
+                        .neutralButton("Okay", neutralListener)
+                        .animation(AnimUtils.AnimUp)
+                        .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.secondaryColor),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
+                        .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
+                        .show();
+            }
+        }
     }
 
     @Override
