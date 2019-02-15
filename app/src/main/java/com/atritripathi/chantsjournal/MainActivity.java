@@ -3,6 +3,7 @@ package com.atritripathi.chantsjournal;
 import android.app.Dialog;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -15,6 +16,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MantraViewModel mMantraViewModel;
     private MantraAdapter mMantraAdapter;
+    private RecyclerView mRecyclerView;
 
 
     @Override
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        RecyclerView mRecyclerView = findViewById(R.id.rv_mantras);
+        mRecyclerView = findViewById(R.id.rv_mantras);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -87,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 mMantraAdapter.setMantras(mantras);
             }
         });
+
+//        runLayoutAnimation(mRecyclerView);
 
         final Button addMantraButton = findViewById(R.id.add_mantra_button);
         addMantraButton.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +127,22 @@ public class MainActivity extends AppCompatActivity {
 
         helper.attachToRecyclerView(mRecyclerView);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        runLayoutAnimation(mRecyclerView);
+    }
+
+    private void runLayoutAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 
 
