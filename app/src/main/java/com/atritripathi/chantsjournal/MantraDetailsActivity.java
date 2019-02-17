@@ -207,6 +207,44 @@ public class MantraDetailsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (malasCompleted != 0) {
+            DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
+                @Override
+                public void onPositive(Dialog dialog) {
+                    dialog.dismiss();
+                }
+            };
+
+            DroidDialog.onNegativeListener negativeListener = new DroidDialog.onNegativeListener() {
+                @Override
+                public void onNegative(Dialog dialog) {
+                    dialog.dismiss();
+                    finish();
+                }
+            };
+
+            if (!MantraDetailsActivity.this.isFinishing()) {
+                new DroidDialog.Builder(MantraDetailsActivity.this)
+                        .icon(R.drawable.ic_action_tick)
+                        .title("Alert!")
+                        .content("Are you sure? Any unsaved chanting progress will be lost.")
+                        .cancelable(true, true)
+                        .positiveButton("Cancel", positiveListener)
+                        .negativeButton("Continue", negativeListener)
+                        .animation(AnimUtils.AnimUp)
+                        .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.secondaryColor),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
+                        .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
+                        .show();
+            }
+        } else {
+            finish();
+        }
+
+    }
 
     void checkChantingGoalReached(int completedMalasInt, int totalMalasInt, final String mantraIdentifier) {
         int finalCount = malasCompleted + completedMalasInt;
