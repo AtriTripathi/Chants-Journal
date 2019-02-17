@@ -20,6 +20,7 @@
         android:background="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/divider15"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/divider15"
         app:layout_constraintVertical_bias="0.0" />
@@ -35,6 +36,7 @@
         android:background="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toEndOf="@+id/divider15"
         app:layout_constraintTop_toTopOf="@+id/divider15"
         app:layout_constraintVertical_bias="0.0" />
@@ -184,7 +186,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@color/dark_orange"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp"
@@ -234,7 +236,7 @@
                         android:id="@+id/textView12"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:padding="8dp"
+                        android:padding="10dp"
                         android:text="@string/mantra_note"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />

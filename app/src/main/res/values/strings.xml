@@ -14,28 +14,33 @@
     <string name="delete_mantra_title">Confirm deletion.></string>
     <string name="delete_mantra_content">You are about to permanently delete this Mantra and all its data. Do you wish to continue?></string>
     <string name="title_activity_settings">Settings</string>
-    <string name="help_text">A mantra consists of uniquely selected special syllables.\n\nEach mantra carries a
-        certain amount of positive vibration, which when repeated regularly over a period of time can generate positive
-        emotions, peace of mind and bestow oneself with sound health.\n\n This app allows you to add
-        your personal list of mantras, with each Mantra having a definite amount of chants/goal to be
-        completed. It also allows you to keep a track of the chants/malas completed.
+    <string name="help_text">A mantra (Sanskrit: मन्त्र) is a sacred utterance, a numinous sound, a syllable,
+        word or phonemes, or group of words in Sanskrit believed to have psychological and spiritual powers.
+        They are typically melodic, mathematically structured meters, believed to be resonant with numinous qualities.
+        \n\nAt its simplest, the word ॐ (Aum, Om) serves as a mantra, also known as the source of all mantras.
+        \n\nEach mantra carries a certain amount of positive vibration, which when repeated regularly over a period of time can generate tranquil
+        emotions, peace of mind and bestow oneself with sound body and health.\n\n
+        ✧✧✧
+        \n\nStart by adding your personal list of mantras, with each mantra having a defined chanting goal.
+        We also recommend you to Sign in with your Google account in order to keep all your Chanting data
+        backed up.
     </string>
 
     <string name="mantra_note">A <b>Mala</b> is a sacred rosary in the form of a garland used for
         keeping count while reciting, chanting, or mentally repeating a mantra or the name
-        of a deity. This <b><i>sādhanā</i></b> (practice) is known in Sanskrit as <b>Japa</b>. Malas are typically
-        made with 18, 27, 54 or 108 beads.\n\nAccording to <i>Vedas</i> (Ancient India Text), the details of
-        the recommended amount of Japa required for a Mantra in the current epoch is given below.\n \n
-        <b>⦿ Chants</b> - 1,25,000\n
+        of a deity. This <b><i>sādhanā</i></b> (practice) is known in Sanskrit as <b>Japa</b>.
+        A typical Mala is generally made with 18, 27, 54 or 108 beads.\n\nAccording to <b><i>Védās</i></b>
+        (Ancient Indian Texts), the recommended amount of Japa required in the current epoch i.e. <b><i>"Kaliyuga"</i></b>,
+        for a Mantra to become fruitful is given below.\n\n
+        <b>⦿ Japa</b> - 1,25,000\n
         <b>⦿ Hawan</b> - 12,500 \n
         <b>⦿ Tarpan</b> - 1,250\n
         <b>⦿ Maarjan</b> - 125\n
-        <b>⦿ Brahman Bhoj</b> - 13\n\nAs an alternative, instead of performing above activities,
-        we can perform chants equivalent to the combined total of all the above amounts, which approximately
-        turns out to be 1,38,888. And, in order to nullify the effect of any erroneous chants, it is
-        recommended to add some buffer amount to the sum and make it a total of 1,50,000.\n\n
-
-        Now, if we consider an ideal <b><i>Japa Mala</i></b> to consist of <b>108 beads</b>, we are required to complete a total of
-        1,500 Malas in order to reach an ideal chanting goal for any Mantra.
+        <b>⦿ Brahman Bhoj</b> - 13\n\nAlternatively, instead of involving oneself in these rigorous rituals,
+        one can gain similar benefits by piously chanting an amount equivalent to the combined total of all the above, which
+        turns out to be <b>1,38,888</b> approximately.\n\nMoreover, in order to nullify the effects of any erroneous chants, it is also
+        recommended to add a buffer amount to the sum and make it a total of <b>1,50,000</b> chants.\n\nNow,
+        if we consider an ideal <i>Japa Mala</i> consisting of <b>108 beads</b>, we must diligently complete a total of
+        <b><i>1,500 Malas</i></b> in order to successfully reach an ideal chanting goal for a given Mantra.
     </string>
 </resources>
