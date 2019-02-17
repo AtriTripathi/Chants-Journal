@@ -15,6 +15,8 @@ public class NewMantraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_mantra);
 
+        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
+
         final EditText mantraEditText = findViewById(R.id.et_new_mantra);
         final TextInputEditText malasEditText = findViewById(R.id.et_total_malas);
         final Button saveButton = findViewById(R.id.done_chanting_button);

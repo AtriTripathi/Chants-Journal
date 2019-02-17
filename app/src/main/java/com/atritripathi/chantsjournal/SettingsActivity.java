@@ -38,6 +38,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
+
         profileName = findViewById(R.id.tv_user_name);
         profileImage = findViewById(R.id.iv_user_profile);
         auth = FirebaseAuth.getInstance();

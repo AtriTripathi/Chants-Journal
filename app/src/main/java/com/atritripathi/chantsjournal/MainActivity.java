@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
+
 //        user = FirebaseAuth.getInstance().getCurrentUser();
 //        if (user == null) {
 //            signOut();
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         // To show the translucent Buddha in the background, appropriately.
         View initBuddhaView = findViewById(R.id.init_buddha_view);
         ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
+
 
 
         ImageView settingsButton = findViewById(R.id.iv_settings);
@@ -133,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         runLayoutAnimation(mRecyclerView);
+        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
     }
 
     private void runLayoutAnimation(final RecyclerView recyclerView) {

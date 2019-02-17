@@ -49,6 +49,8 @@ public class MantraDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mantra_details);
 
+        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
+
         final TextView mantraName = findViewById(R.id.tv_mantra_name);
         final TextView totalMalas = findViewById(R.id.tv_details_total_malas);
         final TextView completedMalas = findViewById(R.id.tv_details_completed_malas);
