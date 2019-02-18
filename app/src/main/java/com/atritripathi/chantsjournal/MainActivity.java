@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
 
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        if (user == null) {
-//            signOut();
-//        }
-
 
         // To show the translucent Buddha in the background, appropriately.
         View initBuddhaView = findViewById(R.id.init_buddha_view);
@@ -159,12 +154,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void signOut() {
-        Intent signOutIntent = new Intent(MainActivity.this, SettingsActivity.class);
-        startActivity(signOutIntent);
-        finish();
-    }
-
     private void deleteMantraAlertDialog(final int position) {
 
         DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
@@ -206,23 +195,6 @@ public class MainActivity extends AppCompatActivity {
             mMantraAdapter.refreshMantraList(position);
         }
     }
-
-//    public void createSignInIntent() {
-//        // [START auth_fui_create_intent]
-//        // Choose authentication providers
-//        List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                new AuthUI.IdpConfig.PhoneBuilder().build(),
-//                new AuthUI.IdpConfig.GoogleBuilder().build());
-//
-//        // Create and launch sign-in intent
-//        startActivityForResult(
-//                AuthUI.getInstance()
-//                        .createSignInIntentBuilder()
-//                        .setAvailableProviders(providers)
-//                        .build(),
-//                RC_SIGN_IN);
-//        // [END auth_fui_create_intent]
-//    }
 
 
     /**
