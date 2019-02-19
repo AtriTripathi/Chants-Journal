@@ -54,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
+                showBottomSheetDialogFragment();
+//                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -125,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
 
         helper.attachToRecyclerView(mRecyclerView);
 
+    }
+
+    public void showBottomSheetDialogFragment() {
+        SettingsBottomSheet bottomSheetFragment = new SettingsBottomSheet();
+        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
     }
 
     @Override
