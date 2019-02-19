@@ -1,13 +1,16 @@
 package com.atritripathi.chantsjournal;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.view.Window;
 
 public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
     public SettingsBottomSheet() {
@@ -40,6 +43,9 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share Chants Journal via"));
+
+                if (getActivity() != null)
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(SettingsBottomSheet.this).commit();
             }
         });
 
@@ -55,18 +61,27 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
             public void onClick(View v) {
                 Intent feedbackIntent = new Intent(Intent.ACTION_SENDTO);
                 feedbackIntent.setData(Uri.parse("mailto:"));
-                feedbackIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "tripathi.atri@gmail.com" });
+                feedbackIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"tripathi.atri@gmail.com"});
                 feedbackIntent.putExtra(Intent.EXTRA_SUBJECT, "[Chants Journal] Feedback");
-                feedbackIntent.putExtra(Intent.EXTRA_TEXT, "Dear Atri," + " ");
+                feedbackIntent.putExtra(Intent.EXTRA_TEXT, "Dear Atri," + "  ");
                 startActivity(Intent.createChooser(feedbackIntent, "Send Feedback:"));
-//                startActivity(feedbackIntent);
+
+                if (getActivity() != null)
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(SettingsBottomSheet.this).commit();
             }
         });
 
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "About clicked", Toast.LENGTH_SHORT).show();
+                Dialog helpDialog = new Dialog(getContext(), R.style.PauseDialog);
+                helpDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                helpDialog.setContentView(R.layout.layout_about);
+                helpDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                helpDialog.show();
+
+                if (getActivity() != null)
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(SettingsBottomSheet.this).commit();
             }
         });
 
