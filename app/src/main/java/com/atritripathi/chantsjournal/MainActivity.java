@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
     private MantraAdapter mMantraAdapter;
     private RecyclerView mRecyclerView;
 
+//    private TextView shareButton;
+//    private TextView donateButton;
+//    private TextView feedbackButton;
+//    private TextView aboutButton;
+//    private TextView exitButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         // To show the translucent Buddha in the background, appropriately.
         View initBuddhaView = findViewById(R.id.init_buddha_view);
         ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
-
 
 
         ImageView settingsButton = findViewById(R.id.iv_settings);
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 showHelpDialog();
             }
         });
+
 
 
         mRecyclerView = findViewById(R.id.rv_mantras);
@@ -123,9 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         deleteMantraAlertDialog(position);
                     }
                 });
-
         helper.attachToRecyclerView(mRecyclerView);
-
     }
 
     public void showBottomSheetDialogFragment() {

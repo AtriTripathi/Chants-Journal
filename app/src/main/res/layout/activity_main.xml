@@ -235,5 +235,4 @@
         app:layout_constraintTop_toTopOf="@+id/add_mantra_button"
         app:srcCompat="@drawable/ic_help" />
 
-
 </android.support.constraint.ConstraintLayout>
