@@ -1,6 +1,7 @@
 package com.atritripathi.chantsjournal;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
 
         ConstraintLayout shareButton = BottomSheetView.findViewById(R.id.button_share);
         ConstraintLayout donateButton = BottomSheetView.findViewById(R.id.button_donate);
-        ConstraintLayout feedbackButton = BottomSheetView.findViewById(R.id.button_feedback);
+        final ConstraintLayout feedbackButton = BottomSheetView.findViewById(R.id.button_feedback);
         ConstraintLayout aboutButton = BottomSheetView.findViewById(R.id.button_about);
         ConstraintLayout exitButton = BottomSheetView.findViewById(R.id.button_exit);
 
@@ -52,7 +53,13 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent feedbackIntent = new Intent(Intent.ACTION_SENDTO);
+                feedbackIntent.setData(Uri.parse("mailto:"));
+                feedbackIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "tripathi.atri@gmail.com" });
+                feedbackIntent.putExtra(Intent.EXTRA_SUBJECT, "[Chants Journal] Feedback");
+                feedbackIntent.putExtra(Intent.EXTRA_TEXT, "Dear Atri," + " ");
+                startActivity(Intent.createChooser(feedbackIntent, "Send Feedback:"));
+//                startActivity(feedbackIntent);
             }
         });
 
