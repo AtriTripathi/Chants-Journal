@@ -35,12 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private MantraAdapter mMantraAdapter;
     private RecyclerView mRecyclerView;
 
-//    private TextView shareButton;
-//    private TextView donateButton;
-//    private TextView feedbackButton;
-//    private TextView aboutButton;
-//    private TextView exitButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         // recycler view to delete that item
         ItemTouchHelper helper = new ItemTouchHelper(
                 new ItemTouchHelper.SimpleCallback(0,
-                        ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                        ItemTouchHelper.LEFT) {
                     @Override
                     public boolean onMove(RecyclerView recyclerView,
                                           RecyclerView.ViewHolder viewHolder,

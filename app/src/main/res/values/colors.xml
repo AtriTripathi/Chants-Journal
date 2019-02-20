@@ -19,5 +19,6 @@
     <color name="trans_black">#212121</color>
     <color name="status_bg">#ff791a</color>
     <color name="trans_white">#55ffffff</color>
-    <color name="melon">#f79862</color>
+    <color name="melon">#FB8C00</color>
+    <color name="circle_buttons">#FFA726</color>
 </resources>
