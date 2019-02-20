@@ -9,6 +9,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,6 +41,9 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final TextView count = findViewById(R.id.tv_count);
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
+
+        Animation mantraNoteAnim = AnimationUtils.loadAnimation(MantraDetailsActivity.this,R.anim.plus_button_anim);
+        addButton.startAnimation(mantraNoteAnim);
 
         final String mantraIdentifier = getIntent().getStringExtra("mantra_name");
 
