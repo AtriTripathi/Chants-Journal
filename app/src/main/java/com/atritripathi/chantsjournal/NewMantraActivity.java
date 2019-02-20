@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
@@ -26,6 +27,11 @@ public class NewMantraActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
 
+        CardView mantraNote = findViewById(R.id.cv_mantra_note);
+
+        Animation mantraNoteAnim = AnimationUtils.loadAnimation(NewMantraActivity.this,R.anim.mantra_note_anim);
+        mantraNote.startAnimation(mantraNoteAnim);
+
         mantraEditText = findViewById(R.id.et_new_mantra);
         malasEditText = findViewById(R.id.et_total_malas);
         saveButton = findViewById(R.id.done_chanting_button);
@@ -37,7 +43,6 @@ public class NewMantraActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void addMantra() {
         final String mantra = mantraEditText.getText().toString();
