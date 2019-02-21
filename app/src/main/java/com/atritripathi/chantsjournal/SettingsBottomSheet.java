@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
     public SettingsBottomSheet() {
@@ -26,6 +28,13 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View BottomSheetView = inflater.inflate(R.layout.settings_bottom_sheet, container, false);
+
+//        LinearLayout bottomSheetLayout = BottomSheetView.findViewById(R.id.layout_bottom_sheet);
+//
+        Animation bottomSheetAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bottom_sheet_anim);
+//        bottomSheetAnim.setInterpolator(new BounceInterpolator());
+        BottomSheetView.startAnimation(bottomSheetAnim);
+
 
         ConstraintLayout shareButton = BottomSheetView.findViewById(R.id.button_share);
         ConstraintLayout donateButton = BottomSheetView.findViewById(R.id.button_donate);

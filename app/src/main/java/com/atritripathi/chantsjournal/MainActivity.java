@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
 
-
         // To show the translucent Buddha in the background, appropriately.
         View initBuddhaView = findViewById(R.id.init_buddha_view);
         ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
