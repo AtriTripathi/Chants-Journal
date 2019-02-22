@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimary">@color/melon</item>
         <item name="colorPrimaryDark">@color/status_bg</item>
         <item name="colorAccent">@color/primaryTextColor</item>
         <item name="android:windowFullscreen">false</item>

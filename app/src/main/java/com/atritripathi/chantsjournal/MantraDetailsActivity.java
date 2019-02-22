@@ -27,6 +27,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
     private int totalMalasInt;
     private int completedMalasInt;
     private MediaPlayer mp;
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +48,14 @@ public class MantraDetailsActivity extends AppCompatActivity {
 
         final String mantraIdentifier = getIntent().getStringExtra("mantra_name");
 
-        final Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         mp = MediaPlayer.create(this, R.raw.malas_counter_ting);
 
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-//                Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(position+1);
                 Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(mantraIdentifier);
                 Log.d(TAG, "Value of mantra = " + mantra);
                 mantraName.setText(mantra.getMantraName());
@@ -75,9 +76,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int finalCount = malasCompleted + completedMalasInt;
-                Log.d(TAG, "checkChantingGoalReached: fc and tm are " + finalCount + " " + totalMalasInt);
                 if (finalCount == totalMalasInt) {
                     checkChantingGoalReached(completedMalasInt, totalMalasInt, mantraIdentifier);
                 }
@@ -186,6 +185,9 @@ public class MantraDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (malasCompleted != 0) {
+
+            vibrator.vibrate(80);
+
             DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
                 @Override
                 public void onPositive(Dialog dialog) {
