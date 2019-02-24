@@ -45,7 +45,6 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
                 public void onClick(View v) {
                     if (getAdapterPosition() != RecyclerView.NO_POSITION) {
                         Intent intent = new Intent(itemView.getContext(), MantraDetailsActivity.class);
-//                        intent.putExtra("mantra_position", getAdapterPosition() + 1);
                         intent.putExtra("mantra_name",mantra.getMantraName());
                         itemView.getContext().startActivity(intent);
                     }
@@ -86,11 +85,6 @@ public class MantraAdapter extends RecyclerView.Adapter<MantraAdapter.MantraView
      */
     @Override
     public void onBindViewHolder(@NonNull final MantraViewHolder holder, int position) {
-//        if (mMantras != null) {
-//            holder.mantraItemView.setText(mMantras.get(position).getMantraName());
-//        } else {
-//            holder.mantraItemView.setText(R.string.no_mantras);
-//        }
         holder.bind(mMantras.get(position));
     }
 

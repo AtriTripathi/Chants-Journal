@@ -29,10 +29,7 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
 
         View BottomSheetView = inflater.inflate(R.layout.settings_bottom_sheet, container, false);
 
-//        LinearLayout bottomSheetLayout = BottomSheetView.findViewById(R.id.layout_bottom_sheet);
-//
         Animation bottomSheetAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bottom_sheet_anim);
-//        bottomSheetAnim.setInterpolator(new BounceInterpolator());
         BottomSheetView.startAnimation(bottomSheetAnim);
 
 
@@ -54,7 +51,8 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
                 startActivity(Intent.createChooser(sharingIntent, "Share Chants Journal via"));
 
                 if (getActivity() != null)
-                    getActivity().getSupportFragmentManager().beginTransaction().remove(SettingsBottomSheet.this).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .remove(SettingsBottomSheet.this).commit();
             }
         });
 
@@ -76,7 +74,8 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
                 startActivity(Intent.createChooser(feedbackIntent, "Send Feedback:"));
 
                 if (getActivity() != null)
-                    getActivity().getSupportFragmentManager().beginTransaction().remove(SettingsBottomSheet.this).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .remove(SettingsBottomSheet.this).commit();
             }
         });
 
@@ -90,7 +89,8 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
                 helpDialog.show();
 
                 if (getActivity() != null)
-                    getActivity().getSupportFragmentManager().beginTransaction().remove(SettingsBottomSheet.this).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .remove(SettingsBottomSheet.this).commit();
             }
         });
 

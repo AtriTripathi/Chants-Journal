@@ -39,5 +39,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/aum_help_icon" />
+        app:srcCompat="@drawable/aum_help_icon"
+        tools:ignore="ContentDescription" />
 </android.support.constraint.ConstraintLayout>

@@ -9,11 +9,8 @@
     <string name="new_mantra">New Mantra</string>
     <string name="set_goal">Set Your Goal</string>
     <string name="total_malas">Total Number of Malas</string>
-    <string name="done_for_day_title">Are you sure?</string>
+    <string name="done_for_day_title">Well done.</string>
     <string name="done_for_day_content">Do you wish to continue chanting or are you done for the day? </string>
-    <string name="delete_mantra_title">Confirm deletion.></string>
-    <string name="delete_mantra_content">You are about to permanently delete this Mantra and all its data. Do you wish to continue?></string>
-    <string name="title_activity_settings">Settings</string>
     <string name="help_text">A mantra (Sanskrit: मन्त्र) is a sacred utterance, a numinous sound, a syllable,
         word or phonemes, or group of words in Sanskrit believed to have psychological and spiritual powers.
         They are typically melodic, mathematically structured meters, believed to be resonant with numinous qualities.
@@ -47,4 +44,18 @@
         \nVersion: v1.0
         \n\n✧✧✧
         \n\n<b>Ⓒ</b> Atri Tripathi, All rights reserved.</string>
+    <string name="empty_mantra_list_text">It\'s a bit lonely here...</string>
+    <string name="get_started_by_adding_a_mantra">Get started by adding a mantra</string>
+    <string name="mantra_details">Mantra Details</string>
+    <string name="sample_mantra_name">Aum Namah Shivaya</string>
+    <string name="chanting_goal">Chanting Goal:</string>
+    <string name="malas_completed">Malas Completed:</string>
+    <string name="done_chanting">Done Chanting</string>
+    <!--<string name="n_a">N/A</string>-->
+    <string name="note_heading">Note</string>
+    <string name="share">Share</string>
+    <string name="donate">Donate</string>
+    <string name="feedback">Feedback</string>
+    <string name="about">About</string>
+    <string name="exit">Exit</string>
 </resources>

@@ -1,24 +1,17 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-    <color name="primaryColor">#00695c</color>
-    <color name="primaryLightColor">#439889</color>
     <color name="primaryDarkColor">#FF8F00</color>
     <color name="secondaryColor">#aa2e7d32</color>
-    <color name="secondaryLightColor">#60ad5e</color>
-    <color name="secondaryDarkColor">#005005</color>
     <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#ffffff</color>
     <color name="alternate_orange">#FF8F00</color>
-    <color name="primaryDarkColor2">#003d33</color>
     <color name="dark_orange">#F9A825</color>
-    <color name="colorAccent">#000000</color>
     <color name="et_black">#0f0f0f</color>
     <color name="aplha_orange">#C8F57F17</color>
     <color name="button_orange">#c8ef6c00</color>
     <color name="alpha_red">#b4d32f2f</color>
     <color name="trans_black">#212121</color>
     <color name="status_bg">#ff791a</color>
-    <color name="trans_white">#55ffffff</color>
     <color name="melon">#FB8C00</color>
     <color name="circle_buttons">#FFA726</color>
+    <color name="dark_red">#B3203C</color>
 </resources>

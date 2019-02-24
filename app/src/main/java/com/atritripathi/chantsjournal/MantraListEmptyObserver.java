@@ -34,7 +34,7 @@ public class MantraListEmptyObserver extends RecyclerView.AdapterDataObserver {
             Log.d(TAG, "checkIfEmpty: empty view = " + emptyView.getVisibility());
 
             recyclerView.setVisibility(emptyViewVisible ? View.GONE : View.VISIBLE);
-            buddhaTranslucent.setVisibility(emptyViewVisible ? buddhaTranslucent.GONE : buddhaTranslucent.VISIBLE);
+            buddhaTranslucent.setVisibility(emptyViewVisible ? View.GONE : View.VISIBLE);
             Log.d(TAG, "checkIfEmpty: recyclerview view = " + recyclerView.getVisibility());
         }
     }

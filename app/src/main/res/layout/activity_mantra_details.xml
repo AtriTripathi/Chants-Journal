@@ -25,7 +25,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <View
-        android:id="@+id/divider10"
         android:layout_width="150dp"
         android:layout_height="1dp"
         android:layout_marginStart="8dp"
@@ -41,7 +40,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <View
-        android:id="@+id/divider11"
         android:layout_width="150dp"
         android:layout_height="1dp"
         android:layout_marginStart="8dp"
@@ -64,7 +62,7 @@
         android:layout_marginBottom="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="Mantra Details"
+        android:text="@string/mantra_details"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="60sp"
@@ -87,7 +85,7 @@
         android:maxLines="1"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="Aum Namah Shivaya"
+        android:text="@string/sample_mantra_name"
         android:textAlignment="center"
         android:textColor="@color/et_black"
         android:textSize="26sp"
@@ -106,10 +104,8 @@
         android:layout_marginBottom="4dp"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:paddingLeft="16dp"
         android:paddingEnd="8dp"
-        android:paddingRight="8dp"
-        android:text="Chanting Goal:"
+        android:text="@string/chanting_goal"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/et_black"
@@ -131,10 +127,8 @@
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:paddingLeft="16dp"
         android:paddingEnd="8dp"
-        android:paddingRight="8dp"
-        android:text="Malas Completed:"
+        android:text="@string/malas_completed"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/et_black"
@@ -173,14 +167,13 @@
         android:paddingTop="10dp"
         android:paddingRight="40dp"
         android:paddingBottom="10dp"
-        android:text="Done Chanting"
+        android:text="@string/done_chanting"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider6"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/button_add" />
 
 
     <TextView
@@ -188,8 +181,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
         android:gravity="start"
         android:text="N/A"
@@ -199,15 +190,14 @@
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tv_details_completed_malas"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="8dp"
         android:text="N/A"
         android:textAlignment="textStart"
@@ -216,28 +206,28 @@
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        tools:ignore="HardcodedText" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="280dp" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <Button
         android:id="@+id/button_add"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_add_mala"
         android:clickable="true"
         android:elevation="8dp"
+        android:focusable="true"
         android:padding="8dp"
         android:text="+"
         android:textAlignment="center"
@@ -245,20 +235,19 @@
         app:layout_constraintBottom_toTopOf="@+id/done_chanting_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_count"
+        tools:ignore="HardcodedText"
+        tools:targetApi="lollipop" />
 
 
     <TextView
         android:id="@+id/tv_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="N/A"
         android:textAlignment="center"
         android:textColor="@color/et_black"
@@ -268,6 +257,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        app:layout_constraintVertical_chainStyle="spread"
+        tools:ignore="HardcodedText" />
 
 </android.support.constraint.ConstraintLayout>

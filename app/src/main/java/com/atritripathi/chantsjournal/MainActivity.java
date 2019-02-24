@@ -24,29 +24,27 @@ import android.widget.Toast;
 
 import com.droidbyme.dialoglib.AnimUtils;
 import com.droidbyme.dialoglib.DroidDialog;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int MANTRA_DETAILS_ACTIVITY_REQUEST_CODE = 0;
-
     private MantraViewModel mMantraViewModel;
     private MantraAdapter mMantraAdapter;
     private RecyclerView mRecyclerView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
+        overridePendingTransition(R.anim.fade_in_layout, R.anim.fade_out_layout);
 
         // To show the translucent Buddha in the background, appropriately.
         View initBuddhaView = findViewById(R.id.init_buddha_view);
         ImageView buddhaTranslucent = findViewById(R.id.buddha_always_bg);
-
 
         ImageView settingsButton = findViewById(R.id.iv_settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         mRecyclerView = findViewById(R.id.rv_mantras);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -73,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         mMantraAdapter = new MantraAdapter(this);
 
         // Checks whether list is empty and then displays the initial buddha image
-        mMantraAdapter.registerAdapterDataObserver(new MantraListEmptyObserver(mRecyclerView, initBuddhaView, buddhaTranslucent));
+        mMantraAdapter.registerAdapterDataObserver
+                (new MantraListEmptyObserver(mRecyclerView, initBuddhaView, buddhaTranslucent));
         mRecyclerView.setAdapter(mMantraAdapter);
 
         // Get a new or existing ViewModel from the ViewModelProvider.
@@ -88,9 +85,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        runLayoutAnimation(mRecyclerView);
-
         final Button addMantraButton = findViewById(R.id.add_mantra_button);
+        PushDownAnim.setPushDownAnimTo(addMantraButton, settingsButton, helpButton);
         addMantraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,8 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onSwiped(RecyclerView.ViewHolder viewHolder,
-                                         int direction) {
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                         int position = viewHolder.getAdapterPosition();
                         deleteMantraAlertDialog(position);
                     }
@@ -137,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void runLayoutAnimation(final RecyclerView recyclerView) {
         final Context context = recyclerView.getContext();
-        final LayoutAnimationController controller =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+        final LayoutAnimationController controller = AnimationUtils
+                .loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
 
         recyclerView.setLayoutAnimation(controller);
         recyclerView.getAdapter().notifyDataSetChanged();
@@ -171,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
                 Mantra mantra = mMantraAdapter.getMantraAtPosition(position);
                 mMantraViewModel.deleteMantra(mantra);
 
-                Toast.makeText(MainActivity.this, "Mantra deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Mantra deleted", Toast.LENGTH_SHORT)
+                        .show();
 
                 dialog.dismiss();
             }
@@ -183,7 +179,8 @@ public class MainActivity extends AppCompatActivity {
             new DroidDialog.Builder(MainActivity.this)
                     .icon(R.drawable.ic_action_close)
                     .title("Confirm deletion.")
-                    .content("Are you sure? This will permanently delete this mantra and all its associated data.")
+                    .content("Are you sure? " +
+                            "This will permanently delete this mantra and all its associated data.")
                     .cancelable(true, true)
                     .positiveButton("Cancel", positiveListener)
                     .negativeButton("Delete", negativeListener)

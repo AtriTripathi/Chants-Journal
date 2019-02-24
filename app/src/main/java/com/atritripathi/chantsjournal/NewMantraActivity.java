@@ -14,6 +14,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.thekhaeng.pushdownanim.PushDownAnim;
+
 public class NewMantraActivity extends AppCompatActivity {
 
     private EditText mantraEditText;
@@ -29,13 +31,15 @@ public class NewMantraActivity extends AppCompatActivity {
 
         CardView mantraNote = findViewById(R.id.cv_mantra_note);
 
-        Animation mantraNoteAnim = AnimationUtils.loadAnimation(NewMantraActivity.this,R.anim.mantra_note_anim);
+        Animation mantraNoteAnim = AnimationUtils
+                .loadAnimation(NewMantraActivity.this,R.anim.mantra_note_anim);
         mantraNote.startAnimation(mantraNoteAnim);
 
         mantraEditText = findViewById(R.id.et_new_mantra);
         malasEditText = findViewById(R.id.et_total_malas);
         saveButton = findViewById(R.id.done_chanting_button);
 
+        PushDownAnim.setPushDownAnimTo(saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

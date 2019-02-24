@@ -1,5 +1,6 @@
 package com.atritripathi.chantsjournal;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,9 +20,7 @@ import com.thekhaeng.pushdownanim.PushDownAnim;
 
 public class MantraDetailsActivity extends AppCompatActivity {
 
-    private static final String TAG = "MantraDetailsActivity";
-
-    private int malasCompleted = 0;
+    private int malasCompleted;
     private int totalMalasCompleted;
     private int totalMalasInt;
     private int completedMalasInt;
@@ -34,7 +32,7 @@ public class MantraDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mantra_details);
 
-        overridePendingTransition(R.anim.fade_in_layout,R.anim.fade_out_layout);
+        overridePendingTransition(R.anim.fade_in_layout, R.anim.fade_out_layout);
 
         final TextView mantraName = findViewById(R.id.tv_mantra_name);
         final TextView totalMalas = findViewById(R.id.tv_details_total_malas);
@@ -43,37 +41,35 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
 
-        Animation mantraNoteAnim = AnimationUtils.loadAnimation(MantraDetailsActivity.this,R.anim.plus_button_anim);
+        Animation mantraNoteAnim = AnimationUtils
+                .loadAnimation(MantraDetailsActivity.this, R.anim.plus_button_anim);
         addButton.startAnimation(mantraNoteAnim);
 
         final String mantraIdentifier = getIntent().getStringExtra("mantra_name");
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-        mp = MediaPlayer.create(this, R.raw.malas_counter_ting);
-
-
         new Thread(new Runnable() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void run() {
-                Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this).mantraDao().getMantra(mantraIdentifier);
-                Log.d(TAG, "Value of mantra = " + mantra);
+                Mantra mantra = MantraDatabase.getDatabase(MantraDetailsActivity.this)
+                        .mantraDao().getMantra(mantraIdentifier);
                 mantraName.setText(mantra.getMantraName());
                 totalMalasInt = mantra.getTotalMalas();
                 completedMalasInt = mantra.getCompletedMalas();
                 totalMalas.setText(totalMalasInt + " Malas");
                 completedMalas.setText(completedMalasInt + " Malas");
-//                totalMalasInt = Integer.valueOf(totalMalas.getText().toString());
-//                completedMalasInt = Integer.valueOf(completedMalas.getText().toString());
                 totalMalasCompleted = mantra.getCompletedMalas();
                 count.setText(malasCompleted + " Malas Completed");
 
             }
         }).start();
 
-        PushDownAnim.setPushDownAnimTo(addButton);
+        PushDownAnim.setPushDownAnimTo(addButton, doneChanting);
 
         addButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 int finalCount = malasCompleted + completedMalasInt;
@@ -81,66 +77,25 @@ public class MantraDetailsActivity extends AppCompatActivity {
                     checkChantingGoalReached(completedMalasInt, totalMalasInt, mantraIdentifier);
                 }
 
-                mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
-                if (mp.isPlaying() && mp != null) {
-                    mp.stop();
-                    mp.reset();
-                    mp.release();
-                    mp = MediaPlayer.create(getBaseContext(), R.raw.malas_counter_ding);
-                }
-
-                mp.start();
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.reset();
-                        mp.release();
-                    }
-                });
-
-//                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//                    @Override
-//                    public void onCompletion(MediaPlayer mp) {
-//                        mp.release();
-//                    }
-//                });
-
+                playSound(R.raw.malas_counter_ding);
                 vibrator.vibrate(20);
 
                 malasCompleted++;
                 count.setText(malasCompleted + " Malas Completed");
 
-
                 checkChantingGoalReached(completedMalasInt, totalMalasInt, mantraIdentifier);
-
             }
         });
-
 
         doneChanting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mp = MediaPlayer.create(MantraDetailsActivity.this, R.raw.done_chanting_dialog_tune);
-                if (mp.isPlaying() && mp != null) {
-                    mp.stop();
-                    mp.reset();
-                    mp.release();
-                    mp = MediaPlayer.create(MantraDetailsActivity.this, R.raw.done_chanting_dialog_tune);
-                }
 
-                mp.start();
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.reset();
-                        mp.release();
-                    }
-                });
+                playSound(R.raw.done_chanting_dialog_tune);
 
                 DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
                     @Override
                     public void onPositive(Dialog dialog) {
-
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -172,8 +127,8 @@ public class MantraDetailsActivity extends AppCompatActivity {
                             .negativeButton("Continue Chanting", negativeListener)
                             .animation(AnimUtils.AnimUp)
                             .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
-                                    ContextCompat.getColor(MantraDetailsActivity.this, R.color.secondaryColor),
-                                    ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
+                                    ContextCompat.getColor(MantraDetailsActivity.this, R.color.white),
+                                    ContextCompat.getColor(MantraDetailsActivity.this, R.color.button_orange))
                             .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
                             .show();
                 }
@@ -185,8 +140,8 @@ public class MantraDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (malasCompleted != 0) {
-
-            vibrator.vibrate(80);
+            playSound(R.raw.unsaved_changes_tune);
+            vibrator.vibrate(50);
 
             DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
                 @Override
@@ -212,9 +167,9 @@ public class MantraDetailsActivity extends AppCompatActivity {
                         .positiveButton("Cancel", positiveListener)
                         .negativeButton("Continue", negativeListener)
                         .animation(AnimUtils.AnimUp)
-                        .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
-                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.secondaryColor),
-                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
+                        .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.dark_red),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.white),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.button_orange))
                         .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
                         .show();
             }
@@ -226,9 +181,9 @@ public class MantraDetailsActivity extends AppCompatActivity {
 
     void checkChantingGoalReached(int completedMalasInt, int totalMalasInt, final String mantraIdentifier) {
         int finalCount = malasCompleted + completedMalasInt;
-
-        Log.d(TAG, "checkChantingGoalReached: fc and tm are " + finalCount + " " + totalMalasInt);
         if (finalCount == totalMalasInt) {
+
+            playSound(R.raw.done_chanting_dialog_tune);
 
             DroidDialog.onNeutralListener neutralListener = new DroidDialog.onNeutralListener() {
                 @Override
@@ -257,14 +212,32 @@ public class MantraDetailsActivity extends AppCompatActivity {
                         .neutralButton("Okay", neutralListener)
                         .animation(AnimUtils.AnimUp)
                         .color(ContextCompat.getColor(MantraDetailsActivity.this, R.color.alternate_orange),
-                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.secondaryColor),
-                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.alpha_red))
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.white),
+                                ContextCompat.getColor(MantraDetailsActivity.this, R.color.button_orange))
                         .divider(true, ContextCompat.getColor(MantraDetailsActivity.this, R.color.orange))
                         .show();
             }
         }
     }
 
+    private void playSound(int res) {
+        mp = MediaPlayer.create(MantraDetailsActivity.this, res);
+        if (mp.isPlaying() && mp != null) {
+            mp.stop();
+            mp.reset();
+            mp.release();
+            mp = MediaPlayer.create(MantraDetailsActivity.this, res);
+        }
+
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.reset();
+                mp.release();
+            }
+        });
+    }
 }
 
 
