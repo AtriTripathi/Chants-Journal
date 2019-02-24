@@ -7,7 +7,8 @@
     android:background="@color/alternate_orange"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".NewMantraActivity">
+    tools:context=".NewMantraActivity"
+    android:keepScreenOn="true">
 
     <View
         android:id="@+id/divider6"
