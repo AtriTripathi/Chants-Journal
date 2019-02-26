@@ -15,10 +15,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
+
     public SettingsBottomSheet() {
         // Required empty public constructor
     }
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +33,10 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
         Animation bottomSheetAnim = AnimationUtils.loadAnimation(getContext(), R.anim.bottom_sheet_anim);
         BottomSheetView.startAnimation(bottomSheetAnim);
 
-
-        ConstraintLayout shareButton = BottomSheetView.findViewById(R.id.button_share);
-        ConstraintLayout donateButton = BottomSheetView.findViewById(R.id.button_donate);
+        final ConstraintLayout shareButton = BottomSheetView.findViewById(R.id.button_share);
         final ConstraintLayout feedbackButton = BottomSheetView.findViewById(R.id.button_feedback);
-        ConstraintLayout aboutButton = BottomSheetView.findViewById(R.id.button_about);
-        ConstraintLayout exitButton = BottomSheetView.findViewById(R.id.button_exit);
+        final ConstraintLayout aboutButton = BottomSheetView.findViewById(R.id.button_about);
+        final ConstraintLayout exitButton = BottomSheetView.findViewById(R.id.button_exit);
 
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,13 +52,6 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
                 if (getActivity() != null)
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .remove(SettingsBottomSheet.this).commit();
-            }
-        });
-
-        donateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
 
