@@ -51,11 +51,14 @@
     <string name="chanting_goal">Chanting Goal:</string>
     <string name="malas_completed">Malas Completed:</string>
     <string name="done_chanting">Done Chanting</string>
-    <!--<string name="n_a">N/A</string>-->
     <string name="note_heading">Note</string>
     <string name="share">Share</string>
     <string name="donate">Donate</string>
     <string name="feedback">Feedback</string>
     <string name="about">About</string>
     <string name="exit">Exit</string>
+    <string name="add_mantra_tutorial">Get started by adding a Mantra \nby clicking on the \"Add Mantra\" button.</string>
+    <string name="welcome_tutorial">Welcome! \n\nThis app allows you to keep a digital \nrecord of your personal list of Mantras.</string>
+    <string name="delete_mantra_tutorial">\"Swipe Left\" on a Mantra to delete it.</string>
+    <string name="help_button_tutorial">Press the \"Help\" button to know more about Mantras.</string>
 </resources>

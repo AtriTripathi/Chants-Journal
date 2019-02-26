@@ -19,7 +19,7 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
     public SettingsBottomSheet() {
         // Required empty public constructor
     }
-    
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,8 @@ public class SettingsBottomSheet extends RoundedBottomSheetDialogFragment {
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Install Chants Journal \nSearch on google";
+                String shareBody = "Install Chants Journal, now.\n"
+                        + "\nhttp://play.google.com/store/apps/details?id=com.atritripathi.chantsjournal";
                 String shareSub = "Install Chants Journal";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
