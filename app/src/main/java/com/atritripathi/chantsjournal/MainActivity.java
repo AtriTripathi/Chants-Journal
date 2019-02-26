@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -151,6 +152,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void deleteMantraAlertDialog(final int position) {
+
+        MediaPlayer mp = MediaPlayer.create(MainActivity.this, R.raw.unsaved_changes_tune);
+        if (mp.isPlaying()) {
+            mp.stop();
+            mp.reset();
+            mp.release();
+            mp = MediaPlayer.create(MainActivity.this, R.raw.unsaved_changes_tune);
+        }
+
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.reset();
+                mp.release();
+            }
+        });
 
         DroidDialog.onPositiveListener positiveListener = new DroidDialog.onPositiveListener() {
             @Override

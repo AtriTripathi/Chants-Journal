@@ -41,6 +41,8 @@ public class MantraDetailsActivity extends AppCompatActivity {
         final Button addButton = findViewById(R.id.button_add);
         final Button doneChanting = findViewById(R.id.done_chanting_button);
 
+        mantraName.setSelected(true);   // Auto scrolling the text, if mantra is lengthy.
+
         Animation mantraNoteAnim = AnimationUtils
                 .loadAnimation(MantraDetailsActivity.this, R.anim.plus_button_anim);
         addButton.startAnimation(mantraNoteAnim);

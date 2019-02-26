@@ -171,6 +171,7 @@
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
             android:textSize="20sp"
+            android:maxLength="8"
             android:theme="@style/MantraEditText" />
     </android.support.design.widget.TextInputLayout>
 

@@ -10,8 +10,8 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardBackgroundColor="@color/dark_orange"
-    app:cardCornerRadius="6dp"
-    app:cardElevation="2dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
     android:focusable="true">
 
     <TextView
@@ -20,14 +20,14 @@
         android:layout_height="match_parent"
         android:ellipsize="end"
         android:maxLines="1"
-        android:paddingBottom="9dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="9dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="10dp"
         android:scrollHorizontally="true"
         android:text="@string/mantra"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
 
 </android.support.v7.widget.CardView>

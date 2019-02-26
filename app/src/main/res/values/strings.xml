@@ -8,7 +8,7 @@
     <string name="mantra">Mantra</string>
     <string name="new_mantra">New Mantra</string>
     <string name="set_goal">Set Your Goal</string>
-    <string name="total_malas">Total Number of Malas</string>
+    <string name="total_malas">Total Number of Malas (eg. 1500)</string>
     <string name="done_for_day_title">Well done.</string>
     <string name="done_for_day_content">Do you wish to continue chanting or are you done for the day? </string>
     <string name="help_text">A mantra (Sanskrit: मन्त्र) is a sacred utterance, a numinous sound, a syllable,
