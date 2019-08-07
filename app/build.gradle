@@ -20,8 +20,6 @@ android {
             shrinkResources true
         }
     }
-    productFlavors {
-    }
 }
 
 dependencies {
@@ -51,10 +49,6 @@ dependencies {
         exclude group: 'com.android.support'
     }
     implementation 'com.github.droidbyme:DroidDialog:c6decc7167'
-
-    implementation 'com.mikhaellopez:circularimageview:3.2.0'
-
-    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.github.AppIntro:AppIntro:v4.2.3'
 }

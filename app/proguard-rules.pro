@@ -21,11 +21,5 @@
 #-renamesourcefileattribute SourceFile
 
 #To remove all the log tags
--assumenosideeffects class android.util.Log {
-  public static *** v(...);
-  public static *** d(...);
-  public static *** i(...);
-  public static *** w(...);
-  public static *** e(...);
-}
+
 
